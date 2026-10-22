@@ -14,13 +14,14 @@
   <link rel="stylesheet" href="collections-carousel.css">
   <link rel="stylesheet" href="editorial.css">
   <script src="app.js" defer></script>
+  <script src="hero-chips.js" defer></script>
   <script src="collections-carousel.js" defer></script>
 </head>
 <body>
-  <div class="announcement" aria-label="رسالة المتجر"><span>VANTA PRINT / MADE TO EXPRESS</span><span class="announcement-star" aria-hidden="true">✳</span><span>طبعات كتعبّر عليك، بطريقتك</span></div>
+  <div class="announcement" aria-label="رسالة المتجر"><span>VANTA PRINT / MADE TO EXPRESS</span><svg class="announcement-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2v20M2 12h20M5 5l14 14M19 5 5 19"/></svg><span>طبعات كتعبّر عليك، بطريقتك</span></div>
   <header class="site-header" id="top">
     <div class="container header-inner">
-      <a class="brand" href="#top" aria-label="Vanta Print الرئيسية"><span class="brand-mark">V<span>✳</span></span><span class="brand-text">VANTA<span>PRINT</span></span></a>
+      <a class="brand" href="#top" aria-label="Vanta Print الرئيسية"><span class="brand-mark">V<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 2v20M2 12h20M5 5l14 14M19 5 5 19"/></svg></span><span class="brand-text">VANTA<span>PRINT</span></span></a>
       <nav class="desktop-nav" aria-label="القائمة الرئيسية">
         <a href="#products">المنتجات</a><a href="#custom">صمّم ديالك</a><a href="#how">كيفاش نخدمو</a>
       </nav>
@@ -35,20 +36,24 @@
         <div class="hero-v2-copy">
           <div class="hero-v2-eyebrow"><span></span> VANTA / DROP 01 — طبعات على ذوقك</div>
           <h1 id="hero-title">لبس الفكرة.<br><em>عيش الستايل.</em></h1>
-          <p>أنمي، كرة، تحفيز، ولا فكرة من عندك. تيشيرتات وهوديات وطابلوات كتخلي الستايل ديالك يهضر.</p>
-          <div class="hero-v2-cta"><a class="button hero-primary" href="#collections">كتشف الكولكشن <span aria-hidden="true">↗</span></a><a class="hero-secondary" href="#custom">صمّم ديالك <span aria-hidden="true">←</span></a></div>
-          <ul class="hero-v2-perks"><li><span>✳</span> أنمي</li><li><span>✳</span> كرة</li><li><span>✳</span> تحفيز</li><li><span>✳</span> طباعة خاصة</li></ul>
+          <p>تيشيرتات، هوديات وطابلوات للأنمي والكرة والتحفيز. وعندك فكرة خاصة؟ صمّمها هنا.</p>
+          <div class="hero-v2-cta"><a class="button hero-primary" href="#collections">شوف الكولكشن <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 19 19 5M8 5h11v11"/></svg></a><a class="hero-secondary" href="#custom">صمّم ديالك <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M19 12H5m7-7-7 7 7 7"/></svg></a></div>
+          <ul class="hero-v2-perks"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 2.5 2.5L16 9"/></svg> تصاميم أصلية</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 2.5 2.5L16 9"/></svg> طباعة خاصة</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 2.5 2.5L16 9"/></svg> ملابس وطابلوات</li></ul>
         </div>
-        <div class="hero-v2-photo"><img src="assets/hero-editorial.png" alt="تيشيرت أسود بطبعة زرقاء، هودي فاتح، وطابلو هندسي داخل استوديو داكن" fetchpriority="high"><span class="hero-v2-badge">MAKE IT YOURS ↗</span><span class="hero-v2-caption"><i></i> ORIGINAL IDEAS / VANTA PRINT</span></div>
+        <div class="hero-v2-photo"><img src="assets/hero-editorial.png" alt="تيشيرت أسود بطبعة زرقاء، هودي فاتح، وطابلو هندسي داخل استوديو داكن" fetchpriority="high"><span class="hero-v2-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m4 20 4.5-1 10.4-10.4a2 2 0 0 0-2.8-2.8L5.7 16.2 4 20Z"/><path d="m14.8 7.1 2.8 2.8"/></svg> صمّمها بطريقتك</span><span class="hero-v2-caption"><i></i> ORIGINAL IDEAS / VANTA PRINT</span></div>
       </div>
-      <div class="container hero-v2-strip" aria-label="أنواع المنتجات">
+      <nav class="container hero-v2-strip" aria-label="تصفح أصناف المنتجات">
         <a href="#products" data-type-link="تيشيرت"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M13 6h14l8 6-4 7-5-3v18H14V16l-5 3-4-7 8-6Z"/><path d="M15 6c1 3 3 4 5 4s4-1 5-4"/></svg><span>تيشيرتات</span></a>
         <a href="#products" data-type-link="هودي"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M14 11c0-5 2-8 6-8s6 3 6 8l7 5 2 17h-8l-2-12v13H15V21l-2 12H5l2-17 7-5Z"/><path d="M14 11c2 3 4 4 6 4s4-1 6-4M16 24h8v6h-8"/></svg><span>هوديات</span></a>
         <a href="#products" data-type-link="طابلو"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6 6h28v28H6zM11 11h18v18H11z"/><circle cx="16" cy="16" r="2"/><path d="m11 27 6-7 4 4 3-3 5 6"/></svg><span>بوسترات وطابلوات</span></a>
-      </div>
+        <a href="#products" data-filter-link="anime"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m12 2 2.2 7.8L22 12l-7.8 2.2L12 22l-2.2-7.8L2 12l7.8-2.2L12 2Z"/></svg><span>أنمي</span></a>
+        <a href="#products" data-filter-link="football"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m12 7 4 3-1.5 4.5h-5L8 10l4-3ZM8 10 4.5 9m10 5.5 2.5 3M9.5 14.5 7 18"/></svg><span>كرة</span></a>
+        <a href="#products" data-filter-link="motivation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 19 19 5M10 5h9v9"/></svg><span>تحفيز</span></a>
+        <a href="#custom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m4 20 4.5-1 10.4-10.4a2 2 0 0 0-2.8-2.8L5.7 16.2 4 20Z"/><path d="m14.8 7.1 2.8 2.8"/></svg><span>طباعة خاصة</span></a>
+      </nav>
     </section>
 
-    <div class="ticker" aria-hidden="true"><div class="ticker-track"><span>ANIME ENERGY</span><b>✳</b><span>FOOTBALL CULTURE</span><b>✳</b><span>DAILY MOTIVATION</span><b>✳</b><span>MAKE IT YOURS</span><b>✳</b><span>ANIME ENERGY</span><b>✳</b><span>FOOTBALL CULTURE</span><b>✳</b><span>DAILY MOTIVATION</span><b>✳</b><span>MAKE IT YOURS</span><b>✳</b></div></div>
+    <div class="ticker" aria-hidden="true"><div class="ticker-track"><span>ANIME ENERGY</span><b>✳</b><span>FOOTBALL CULTURE</span><b>✳</b><span>DAILY MOTIVATION</span><b>✳</b><span>صمّمها بطريقتك</span><b>✳</b><span>ANIME ENERGY</span><b>✳</b><span>FOOTBALL CULTURE</span><b>✳</b><span>DAILY MOTIVATION</span><b>✳</b><span>صمّمها بطريقتك</span><b>✳</b></div></div>
 
     <section class="collections section" id="collections"><div class="container"><div class="section-head reveal"><div><span class="kicker">01 / اختار العالم ديالك</span><h2>كل ستايل، <span>عندو بلاصتو.</span></h2></div><p>ثلاثة عوالم كيتلاقاو فحاجة وحدة: تعبر على راسك بلا كلام بزاف.</p></div><div class="collection-viewport"><div class="collection-grid">
       <a class="collection-card anime reveal" href="#products" data-filter-link="anime"><div class="collection-visual" aria-hidden="true"><img class="collection-frame is-active" src="assets/anime-shirt.jpg" alt="" loading="eager" decoding="async"><img class="collection-frame" src="assets/anime-canvas.jpg" alt="" loading="eager" decoding="async"></div><div class="collection-number">01 / 03</div><div class="collection-bottom"><div><small>ORIGINAL / ANIME INSPIRED</small><h3>عالم الأنمي</h3><p>طاقة، ألوان، وشخصيات أصلية.</p></div><span class="round-arrow">↗</span></div></a>
@@ -67,7 +72,7 @@
     <section class="faq section" id="faq"><div class="container faq-grid"><div class="reveal"><span class="kicker">05 / أسئلة كتعاود</span><h2>باغي تعرف <span>كثر؟</span></h2><p>بعض الأجوبة قبل ما تختار القطعة اللي غادي تعجبك.</p></div><div class="faq-list reveal"><details><summary>نقدر نطلب تصميم خاص بيا؟<span>+</span></summary><p>إيه، استعمل قسم «طبع حسب الطلب» ووصف الفكرة ديالك. تقدر تزيد الصورة أو الملف ديالك ملي تتواصل مع المتجر.</p></details><details><summary>شنو المنتجات اللي ممكن نطبع عليها؟<span>+</span></summary><p>النماذج الحالية فيها تيشيرتات، هوديات، طابلوات وتوت باغ. يمكن توسعة الأنواع والمقاسات حسب الإمكانيات المتوفرة.</p></details><details><summary>واش الثمن النهائي هو اللي باين؟<span>+</span></summary><p>الأثمنة الحالية توضيحية. الثمن النهائي كيتحدد حسب القياس، نوع القطعة، والتفاصيل ديال الطباعة.</p></details><details><summary>كيفاش نكمل الطلب؟<span>+</span></summary><p>زيد القطع للسلة، ونسخ أو حمّل ملخص الطلب. رقم التواصل وطريقة الأداء غادي يضافو للمتجر من بعد.</p></details></div></div></section>
   </main>
 
-  <footer class="footer"><div class="container"><div class="footer-top"><div><a class="brand footer-brand" href="#top"><span class="brand-mark">V<span>✳</span></span><span class="brand-text">VANTA<span>PRINT</span></span></a><p>قطع كتخرج الأفكار من راسك للواقع.<br>مصنوعة باش تكون على ذوقك.</p></div><div class="footer-links"><div><strong>استكشف</strong><a href="#collections">الأقسام</a><a href="#products">المنتجات</a><a href="#custom">طبع حسب الطلب</a></div><div><strong>المساعدة</strong><a href="#how">كيفاش خدامين</a><a href="#faq">الأسئلة الشائعة</a><button type="button" class="footer-cart">السلة</button></div></div></div><div class="footer-bottom"><span>© 2026 VANTA PRINT. نموذج متجر تجريبي.</span><span>MADE FOR YOUR STORY <b>✳</b></span></div></div></footer>
+  <footer class="footer"><div class="container"><div class="footer-top"><div><a class="brand footer-brand" href="#top"><span class="brand-mark">V<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 2v20M2 12h20M5 5l14 14M19 5 5 19"/></svg></span><span class="brand-text">VANTA<span>PRINT</span></span></a><p>قطع كتخرج الأفكار من راسك للواقع.<br>مصنوعة باش تكون على ذوقك.</p></div><div class="footer-links"><div><strong>استكشف</strong><a href="#collections">الأقسام</a><a href="#products">المنتجات</a><a href="#custom">طبع حسب الطلب</a></div><div><strong>المساعدة</strong><a href="#how">كيفاش خدامين</a><a href="#faq">الأسئلة الشائعة</a><button type="button" class="footer-cart">السلة</button></div></div></div><div class="footer-bottom"><span>© 2026 VANTA PRINT. نموذج متجر تجريبي.</span><span>MADE FOR YOUR STORY <b>✳</b></span></div></div></footer>
 
   <div class="overlay" id="overlay" hidden></div>
   <aside class="cart-drawer" id="cart-drawer" aria-label="سلة التسوق" aria-hidden="true"><div class="drawer-head"><div><small>YOUR BAG</small><h2>السلة ديالك <span id="drawer-count">(0)</span></h2></div><button class="icon-close" id="cart-close" type="button" aria-label="إغلاق السلة">×</button></div><div class="cart-items" id="cart-items"></div><div class="cart-footer"><div class="subtotal"><span>المجموع التقريبي</span><strong id="subtotal">0 د.م</strong></div><p>الأثمنة توضيحية. الطلب كيخرج كملخص قابل للنسخ أو التحميل؛ الإرسال والأداء غادي يتفعّلو من بعد.</p><button class="button button-lime full" id="copy-order" type="button">نسخ ملخص الطلب <span>↗</span></button><button class="download-order" id="download-order" type="button">تحميل الطلب كملف نصي ↓</button></div></aside>
