@@ -10,7 +10,8 @@
   const icon = toggle.querySelector('.motion-icon');
   const label = toggle.querySelector('.motion-label');
   const progress = section.querySelector('.collection-progress');
-  const mobileQuery = matchMedia('(max-width: 820px)');
+  const mobileQuery = matchMedia('(min-width: 621px) and (max-width: 820px)');
+  const stackQuery = matchMedia('(max-width: 620px)');
   const motionQuery = matchMedia('(prefers-reduced-motion: reduce)');
   const imageReady = new Map();
   let mobile = mobileQuery.matches;
@@ -140,7 +141,7 @@
   }
 
   function canRun() {
-    return visible && !document.hidden && !motionQuery.matches && !manualPaused && !hovered && !focused;
+    return !stackQuery.matches && visible && !document.hidden && !motionQuery.matches && !manualPaused && !hovered && !focused;
   }
 
   function startAuto() {
@@ -255,7 +256,7 @@
     reconcile();
   }, { threshold: 0.18 }).observe(section);
 
-  mobileQuery.addEventListener('change', () => {
+  function syncMode() {
     stopAuto();
     mobile = mobileQuery.matches;
     slide = 1;
@@ -264,7 +265,9 @@
     positionTrack(false);
     updateDots();
     reconcile();
-  });
+  }
+  mobileQuery.addEventListener('change', syncMode);
+  stackQuery.addEventListener('change', syncMode);
   motionQuery.addEventListener('change', () => {
     updateToggle();
     reconcile();
