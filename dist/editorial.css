@@ -316,8 +316,9 @@ body.menu-open{overflow:hidden}
   .mobile-menu::backdrop{backdrop-filter:none}
 }
 
-/* The mobile campaign follows the visual worlds before the store catalogue. */
-.mobile-world-banner,.mobile-collections-title,.collection-mobile-title,.collection-mobile-arrow,.collection-mobile-art,.style-gallery{display:none}
+/* A compact, continuous gallery leads into the mobile worlds. */
+.mobile-world-banner,.mobile-collections-title,.collection-mobile-title,.collection-mobile-arrow,.collection-mobile-art,.style-marquee{display:none}
+@keyframes styleMarqueeDrift{to{transform:translate3d(calc(-50% - 4px),0,0)}}
 @media(max-width:620px){
   .site-header{background:#0b0c10}
   .header-inner{width:calc(100% - 38px);height:56px}
@@ -327,6 +328,12 @@ body.menu-open{overflow:hidden}
   .cart-toggle,.menu-toggle{width:30px;height:36px}
   .menu-toggle span{width:24px;height:2px}
   .hero-v2,.ticker{display:none}
+  .style-marquee{display:block;overflow:hidden;padding:8px 0 9px;background:#0b0c10;border-bottom:1px solid #ffffff17;direction:ltr;mask-image:linear-gradient(to right,transparent,#000 4%,#000 96%,transparent)}
+  .style-marquee-track{display:flex;gap:8px;width:max-content;animation:styleMarqueeDrift 24s linear infinite;will-change:transform}
+  .style-marquee:hover .style-marquee-track,.style-marquee:focus-within .style-marquee-track{animation-play-state:paused}
+  .style-marquee-track>a,.style-marquee-track>span{display:block;flex:none;width:128px;height:78px;overflow:hidden;border:1px solid #ffffff46;border-radius:8px;background:#191c25}
+  .style-marquee-track>a:focus-visible{outline:2px solid var(--lime);outline-offset:-3px}
+  .style-marquee-track img{width:100%;height:100%;max-width:none;object-fit:cover;object-position:center 39%;filter:saturate(.8)}
   .mobile-world-banner{display:block;position:relative;height:clamp(126px,31vw,175px);overflow:hidden;background:#18191e;isolation:isolate}
   .mobile-world-banner>img{width:100%;height:100%;max-width:none;object-fit:cover;object-position:center 46%}
   .mobile-world-shade{position:absolute;inset:0;background:linear-gradient(90deg,#0002,#0008 42%,#0005 67%,#0002)}
@@ -334,12 +341,12 @@ body.menu-open{overflow:hidden}
   .mobile-world-brand h1{font:400 clamp(59px,16.8vw,90px)/.95 'Permanent Marker','Space Grotesk',sans-serif;letter-spacing:-.085em;margin:0 0 6px;transform:rotate(-3deg)}
   .mobile-world-brand span{font:700 clamp(8px,2.2vw,12px)/1.2 'Space Grotesk',sans-serif;letter-spacing:.36em;padding-left:.36em}
   .collections{padding:12px 0 16px;background:#0b0c10}
-  .collections>.container,.style-gallery>.container{width:calc(100% - 24px)}
+  .collections>.container{width:calc(100% - 24px)}
   .collections .section-head{display:block;text-align:center;margin:0 0 14px}
   .collections .section-head>div{max-width:none}
   .collections .section-head .kicker,.collections .section-head>p,.desktop-collections-title{display:none}
   .collections .section-head .mobile-collections-title{display:block;position:relative;width:max-content;max-width:100%;margin:0 auto;padding-bottom:8px;color:#f8f8f8;font-size:clamp(22px,6.1vw,30px);line-height:1.55;letter-spacing:-.04em}
-  .mobile-collections-title:after,.style-gallery h2:after{content:'';position:absolute;bottom:0;left:50%;width:30px;height:3px;background:#3265ff;transform:translateX(-50%)}
+  .mobile-collections-title:after{content:'';position:absolute;bottom:0;left:50%;width:30px;height:3px;background:#3265ff;transform:translateX(-50%)}
   .collection-viewport{overflow:visible;touch-action:auto}
   .collection-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:9px;direction:rtl;transform:none!important;transition:none!important;will-change:auto}
   .collection-card,.collection-card:last-child{display:block;grid-column:auto;flex:none;width:100%;height:clamp(136px,37vw,190px);min-width:0;padding:0;border:1px solid #ffffff3a;border-radius:17px;box-shadow:none;background:#16181e}
@@ -358,14 +365,6 @@ body.menu-open{overflow:hidden}
   .collection-card.motivation .collection-mobile-title strong{font-size:clamp(31px,9.4vw,51px)}
   .collection-mobile-title span{font-size:clamp(11px,3.2vw,15px);font-weight:900;line-height:1.5}
   .collection-mobile-arrow{position:absolute;left:13px;bottom:12px;z-index:2;display:block;width:24px;height:24px;color:#fff;filter:drop-shadow(0 2px 6px #000)}
-  .style-gallery{display:block;padding:2px 0 27px;background:#0b0c10}
-  .style-gallery h2{position:relative;width:max-content;max-width:100%;margin:0 auto 13px;padding-bottom:8px;text-align:center;color:#fff;font-size:clamp(22px,6vw,29px);line-height:1.5;font-weight:900;letter-spacing:-.04em}
-  .style-gallery h2 span{font-family:'Space Grotesk',sans-serif;letter-spacing:-.06em}
-  .style-gallery-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
-  .style-gallery-grid a{display:block;min-width:0;overflow:hidden;aspect-ratio:.77;border:1px solid #ffffff3b;border-radius:13px;background:#22252c}
-  .style-gallery-grid img{width:100%;height:100%;max-width:none;object-fit:cover;object-position:center;filter:saturate(.82);transition:transform .55s ease,filter .55s ease}
-  .style-gallery-grid a:hover img,.style-gallery-grid a:focus-visible img{transform:scale(1.035);filter:saturate(1)}
-  .style-gallery p{margin:13px 0 0;text-align:center;color:#aeb4c2;font-size:11px;font-weight:700}
   .products{padding-top:62px}
 }
 @media(max-width:370px){
@@ -374,7 +373,10 @@ body.menu-open{overflow:hidden}
   .collection-card.motivation .collection-mobile-title strong{font-size:9vw}
 }
 @media(prefers-reduced-motion:reduce){
-  .style-gallery-grid img{transition:none}
+  .style-marquee{overflow-x:auto;mask-image:none;scroll-snap-type:x proximity;scrollbar-width:none}
+  .style-marquee-track{animation:none;transform:none;will-change:auto}
+  .style-marquee-track>a{scroll-snap-align:start}
+  .style-marquee-track>span{display:none}
 }
 
 /* Keep the mobile footer useful without letting it dominate the page. */
