@@ -18,13 +18,20 @@ let toastTimer;
 
 function showToast(message){ const el=$('#toast');el.textContent=message;el.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show'),3200); }
 function saveCart(){localStorage.setItem('vanta-cart',JSON.stringify(cart));renderCart();}
+function renderProducts(visible){
+  $('#product-grid').innerHTML=visible.map(p=>`<article class="product-card reveal in-view"><div class="product-image"><img src="${p.image}" alt="${esc(p.name)}" loading="lazy">${p.badge?`<span class="product-badge">${esc(p.badge)}</span>`:''}<button class="product-action" type="button" data-product="${p.id}" aria-label="شوف تفاصيل ${esc(p.name)}">↗</button></div><div class="product-info"><div><small>${p.tag}</small><h3>${esc(p.name)}</h3></div><strong class="product-price">${money(p.price)}</strong></div></article>`).join('');
+  $('.result-count').textContent=`${visible.length} ${visible.length===1?'منتج':'منتجات'}`;
+}
 function setFilter(filter){
   if(filter==='custom'){document.getElementById('custom').scrollIntoView({behavior:'smooth'});return;}
   activeFilter=filter;
   $$('.filter').forEach(b=>b.classList.toggle('active',b.dataset.filter===filter));
-  const visible=filter==='all'?products:products.filter(p=>p.category===filter);
-  $('#product-grid').innerHTML=visible.map(p=>`<article class="product-card reveal in-view"><div class="product-image"><img src="${p.image}" alt="${esc(p.name)}" loading="lazy">${p.badge?`<span class="product-badge">${esc(p.badge)}</span>`:''}<button class="product-action" type="button" data-product="${p.id}" aria-label="شوف تفاصيل ${esc(p.name)}">↗</button></div><div class="product-info"><div><small>${p.tag}</small><h3>${esc(p.name)}</h3></div><strong class="product-price">${money(p.price)}</strong></div></article>`).join('');
-  $('.result-count').textContent=`${visible.length} ${visible.length===1?'منتج':'منتجات'}`;
+  renderProducts(filter==='all'?products:products.filter(p=>p.category===filter));
+}
+function setTypeFilter(type){
+  activeFilter='type:'+type;
+  $$('.filter').forEach(b=>b.classList.remove('active'));
+  renderProducts(products.filter(p=>p.type===type));
 }
 function openDialog(id){
   const p=products.find(x=>x.id===id);if(!p)return;
@@ -46,6 +53,7 @@ async function copyOrder(){if(!cart.length)return;try{await navigator.clipboard.
 function downloadOrder(){if(!cart.length)return;const blob=new Blob(['\ufeff'+orderText()],{type:'text/plain;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='vanta-print-order.txt';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);showToast('تحمّل ملخص الطلب');}
 
 document.addEventListener('click',e=>{
+  const typeLink=e.target.closest('[data-type-link]');if(typeLink){setTypeFilter(typeLink.dataset.typeLink);return;}
   const filter=e.target.closest('[data-filter]');if(filter){setFilter(filter.dataset.filter);return;}
   const filterLink=e.target.closest('[data-filter-link]');if(filterLink){setFilter(filterLink.dataset.filterLink);}
   const product=e.target.closest('[data-product]');if(product){openDialog(product.dataset.product);return;}
