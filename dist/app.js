@@ -70,8 +70,30 @@ $('.dialog-close').addEventListener('click',()=>$('#product-dialog').close());
 $('#product-dialog').addEventListener('close',()=>document.body.classList.remove('locked'));
 $('#product-dialog').addEventListener('click',e=>{if(e.target===$('#product-dialog'))$('#product-dialog').close()});
 $('#custom-form').addEventListener('submit',e=>{e.preventDefault();const type=$('#custom-type').value,style=$('#custom-style').value,desc=$('#custom-desc').value.trim();if(!desc)return;addItem({id:'custom-'+type,name:'طباعة خاصة — '+type,price:basePrices[type],image:'assets/hero.jpg',size:'يحدد لاحقاً',color:style,desc});e.target.reset();openCart();});
-$('.menu-toggle').addEventListener('click',()=>{const menu=$('.mobile-nav');const isOpen=!menu.hidden;menu.hidden=isOpen;$('.menu-toggle').setAttribute('aria-expanded',String(!isOpen));});
-$$('.mobile-nav a').forEach(a=>a.addEventListener('click',()=>{$('.mobile-nav').hidden=true;$('.menu-toggle').setAttribute('aria-expanded','false')}));
+const menuToggle=$('.menu-toggle'), mobileMenu=$('#mobile-menu');
+function closeMenu(returnFocus=true){
+  if(!mobileMenu.open)return;
+  mobileMenu.classList.remove('is-open');
+  mobileMenu.close();
+  document.body.classList.remove('menu-open');
+  menuToggle.setAttribute('aria-expanded','false');
+  menuToggle.setAttribute('aria-label','افتح القائمة');
+  if(returnFocus)menuToggle.focus({preventScroll:true});
+}
+menuToggle.addEventListener('click',()=>{
+  if(mobileMenu.open){closeMenu();return;}
+  mobileMenu.showModal();
+  document.body.classList.add('menu-open');
+  menuToggle.setAttribute('aria-expanded','true');
+  menuToggle.setAttribute('aria-label','سدّ القائمة');
+  requestAnimationFrame(()=>mobileMenu.classList.add('is-open'));
+  $('.mobile-menu-close').focus({preventScroll:true});
+});
+$('.mobile-menu-close').addEventListener('click',()=>closeMenu());
+$$('.mobile-menu a').forEach(a=>a.addEventListener('click',()=>closeMenu(false)));
+mobileMenu.addEventListener('cancel',e=>{e.preventDefault();closeMenu()});
+mobileMenu.addEventListener('click',e=>{const r=mobileMenu.getBoundingClientRect();if(e.target===mobileMenu&&(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom))closeMenu()});
+matchMedia('(min-width: 821px)').addEventListener('change',e=>{if(e.matches)closeMenu(false)});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('#cart-drawer').classList.contains('open'))closeCart()});
 const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('in-view');observer.unobserve(entry.target)}}),{threshold:.09});$$('.reveal').forEach(el=>observer.observe(el));
 setFilter('all');renderCart();

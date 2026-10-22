@@ -26,9 +26,21 @@
       <nav class="desktop-nav" aria-label="القائمة الرئيسية">
         <a href="#products">المنتجات</a><a href="#custom">صمّم ديالك</a><a href="#how">كيفاش نخدمو</a>
       </nav>
-      <div class="header-actions"><a class="header-link" href="#custom">عندك تصميم؟</a><button class="cart-toggle" type="button" aria-label="افتح السلة"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 8h14l1 12H4L5 8Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg><span class="cart-count" hidden>0</span></button><button class="menu-toggle" type="button" aria-label="افتح القائمة" aria-expanded="false"><span></span><span></span><span></span></button></div>
+      <div class="header-actions"><a class="header-link" href="#custom">عندك تصميم؟</a><button class="cart-toggle" type="button" aria-label="افتح السلة"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 8h14l1 12H4L5 8Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg><span class="cart-count" hidden>0</span></button><button class="menu-toggle" type="button" aria-label="افتح القائمة" aria-controls="mobile-menu" aria-expanded="false"><span></span><span></span><span></span></button></div>
     </div>
-    <nav class="mobile-nav" aria-label="القائمة الرئيسية على الهاتف" hidden><a href="#collections">الأقسام</a><a href="#products">المنتجات</a><a href="#custom">طبع حسب الطلب</a><a href="#how">كيفاش خدامين</a></nav>
+    <dialog class="mobile-menu" id="mobile-menu" aria-label="القائمة الرئيسية على الهاتف">
+      <div class="mobile-menu-inner">
+        <div class="mobile-menu-top"><span class="mobile-menu-logo">VANTA <b>PRINT</b></span><button class="mobile-menu-close" type="button" aria-label="سدّ القائمة"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M5 5 19 19M19 5 5 19"/></svg></button></div>
+        <div class="mobile-menu-intro"><small>MENU / 01</small><p>فين بغيتي تبدا؟</p></div>
+        <nav class="mobile-nav" aria-label="تصفح الموقع">
+          <a href="#collections"><span class="mobile-menu-index">01</span><span class="mobile-menu-link-text"><strong>الكولكشنات</strong><small>أنمي، كرة وتحفيز</small></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+          <a href="#products"><span class="mobile-menu-index">02</span><span class="mobile-menu-link-text"><strong>المنتجات</strong><small>تيشيرتات، هوديات وطابلوات</small></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+          <a href="#custom"><span class="mobile-menu-index">03</span><span class="mobile-menu-link-text"><strong>صمّم ديالك</strong><small>طباعة خاصة على ذوقك</small></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+          <a href="#how"><span class="mobile-menu-index">04</span><span class="mobile-menu-link-text"><strong>كيفاش خدامين</strong><small>من الفكرة حتى القطعة</small></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+        </nav>
+        <div class="mobile-menu-bottom"><span>اختار الستايل ديالك</span><div class="mobile-menu-categories"><a href="#products" data-filter-link="anime">أنمي</a><a href="#products" data-filter-link="football">كرة</a><a href="#products" data-filter-link="motivation">تحفيز</a></div><a class="mobile-menu-cta" href="#custom">بدا تصميمك الخاص <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a><a class="mobile-menu-faq" href="#faq">الأسئلة الشائعة</a></div>
+      </div>
+    </dialog>
   </header>
 
   <main>
