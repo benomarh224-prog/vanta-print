@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#101118">
+  <meta name="theme-color" content="#090a0e">
   <meta name="description" content="VANTA PRINT: طابلوات وملابس بطبعات مستوحاة من الأنمي، الكرة، والتحفيز. صمّم القطعة ديالك بالطريقة اللي كتعجبك.">
   <title>VANTA PRINT — طبعات كتعبّر عليك</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,10 +12,12 @@
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="hero-refresh.css">
   <link rel="stylesheet" href="collections-carousel.css">
+  <link rel="stylesheet" href="editorial.css">
   <script src="app.js" defer></script>
   <script src="collections-carousel.js" defer></script>
 </head>
 <body>
+  <div class="announcement" aria-label="رسالة المتجر"><span>VANTA PRINT / MADE TO EXPRESS</span><span class="announcement-star" aria-hidden="true">✳</span><span>طبعات كتعبّر عليك، بطريقتك</span></div>
   <header class="site-header" id="top">
     <div class="container header-inner">
       <a class="brand" href="#top" aria-label="Vanta Print الرئيسية"><span class="brand-mark">V<span>✳</span></span><span class="brand-text">VANTA<span>PRINT</span></span></a>
@@ -28,16 +30,16 @@
   </header>
 
   <main>
-    <section class="hero hero-v2">
+    <section class="hero hero-v2" aria-labelledby="hero-title">
       <div class="container hero-v2-grid">
         <div class="hero-v2-copy">
-          <div class="hero-v2-eyebrow"><span></span> طباعة على ذوقك</div>
-          <h1>ستايلك.<br><em>بطريقتك.</em></h1>
-          <p>تيشيرتات، هوديات وبوسترات بتصاميم كتعبر عليك.</p>
-          <div class="hero-v2-cta"><a class="button hero-primary" href="#custom">صمّم ديالك <span aria-hidden="true">↗</span></a><a class="hero-secondary" href="#products">شوف الكوليكشن</a></div>
-          <ul class="hero-v2-perks"><li><span>✓</span> تصاميم أصلية</li><li><span>✓</span> طباعة حسب الطلب</li><li><span>✓</span> طابلوات وملابس</li></ul>
+          <div class="hero-v2-eyebrow"><span></span> VANTA / DROP 01 — طبعات على ذوقك</div>
+          <h1 id="hero-title">لبس الفكرة.<br><em>عيش الستايل.</em></h1>
+          <p>أنمي، كرة، تحفيز، ولا فكرة من عندك. تيشيرتات وهوديات وطابلوات كتخلي الستايل ديالك يهضر.</p>
+          <div class="hero-v2-cta"><a class="button hero-primary" href="#collections">كتشف الكولكشن <span aria-hidden="true">↗</span></a><a class="hero-secondary" href="#custom">صمّم ديالك <span aria-hidden="true">←</span></a></div>
+          <ul class="hero-v2-perks"><li><span>✳</span> أنمي</li><li><span>✳</span> كرة</li><li><span>✳</span> تحفيز</li><li><span>✳</span> طباعة خاصة</li></ul>
         </div>
-        <div class="hero-v2-photo"><img src="assets/hero-v2.jpg" alt="تيشيرت أسود بطبعة زرقاء، هودي فاتح، وبوستر هندسي داخل استوديو" fetchpriority="high"><span class="hero-v2-badge">صنع ليك</span><span class="hero-v2-caption"><i></i> YOUR IDEAS. YOUR STYLE.</span></div>
+        <div class="hero-v2-photo"><img src="assets/hero-editorial.png" alt="تيشيرت أسود بطبعة زرقاء، هودي فاتح، وطابلو هندسي داخل استوديو داكن" fetchpriority="high"><span class="hero-v2-badge">MAKE IT YOURS ↗</span><span class="hero-v2-caption"><i></i> ORIGINAL IDEAS / VANTA PRINT</span></div>
       </div>
       <div class="container hero-v2-strip" aria-label="أنواع المنتجات">
         <a href="#products" data-type-link="تيشيرت"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M13 6h14l8 6-4 7-5-3v18H14V16l-5 3-4-7 8-6Z"/><path d="M15 6c1 3 3 4 5 4s4-1 5-4"/></svg><span>تيشيرتات</span></a>
