@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="editorial.css">
   <script src="app.js" defer></script>
   <script src="hero-chips.js" defer></script>
+  <script src="hero-mobile-gallery.js" defer></script>
   <script src="collections-carousel.js" defer></script>
 </head>
 <body>
@@ -25,7 +26,7 @@
       <nav class="desktop-nav" aria-label="القائمة الرئيسية">
         <a href="#products">المنتجات</a><a href="#custom">صمّم ديالك</a><a href="#how">كيفاش نخدمو</a>
       </nav>
-      <div class="header-actions"><a class="header-link" href="#custom">عندك تصميم؟</a><button class="cart-toggle" type="button" aria-label="افتح السلة"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 4h2l2.2 10.4a2 2 0 0 0 2 1.6h8.4a2 2 0 0 0 2-1.6L21 8H6"/><circle cx="10" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg><span class="cart-count" hidden>0</span></button><button class="menu-toggle" type="button" aria-label="افتح القائمة" aria-expanded="false"><span></span><span></span></button></div>
+      <div class="header-actions"><a class="header-link" href="#custom">عندك تصميم؟</a><button class="cart-toggle" type="button" aria-label="افتح السلة"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 8h14l1 12H4L5 8Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg><span class="cart-count" hidden>0</span></button><button class="menu-toggle" type="button" aria-label="افتح القائمة" aria-expanded="false"><span></span><span></span><span></span></button></div>
     </div>
     <nav class="mobile-nav" aria-label="القائمة الرئيسية على الهاتف" hidden><a href="#collections">الأقسام</a><a href="#products">المنتجات</a><a href="#custom">طبع حسب الطلب</a><a href="#how">كيفاش خدامين</a></nav>
   </header>
@@ -34,13 +35,15 @@
     <section class="hero hero-v2" aria-labelledby="hero-title">
       <div class="container hero-v2-grid">
         <div class="hero-v2-copy">
-          <div class="hero-v2-eyebrow"><span></span> VANTA / DROP 01 — طبعات على ذوقك</div>
+          <div class="hero-v2-eyebrow"><span></span> طبعات على ذوقك</div>
           <h1 id="hero-title">لبس الفكرة.<br><em>عيش الستايل.</em></h1>
-          <p>تيشيرتات، هوديات وطابلوات للأنمي والكرة والتحفيز. وعندك فكرة خاصة؟ صمّمها هنا.</p>
-          <div class="hero-v2-cta"><a class="button hero-primary" href="#collections">شوف الكولكشن <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 19 19 5M8 5h11v11"/></svg></a><a class="hero-secondary" href="#custom">صمّم ديالك <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M19 12H5m7-7-7 7 7 7"/></svg></a></div>
+          <p>تيشيرتات، هوديات وبوسترات كتعبّر عليك.</p>
+          <div class="hero-v2-cta"><a class="button hero-primary" href="#collections">كتشف الكولكشن <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a><a class="hero-secondary" href="#custom">صمّم ديالك <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></div>
+          <nav class="hero-style-chips" aria-label="اختار نوع التصميم"><a class="is-active" href="#products" data-filter-link="anime">أنمي</a><a href="#products" data-filter-link="football">كرة</a><a href="#products" data-filter-link="motivation">تحفيز</a><a href="#custom">طباعة خاصة</a></nav>
           <ul class="hero-v2-perks"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 2.5 2.5L16 9"/></svg> تصاميم أصلية</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 2.5 2.5L16 9"/></svg> طباعة خاصة</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 2.5 2.5L16 9"/></svg> ملابس وطابلوات</li></ul>
         </div>
-        <div class="hero-v2-photo"><img src="assets/hero-editorial.png" alt="تيشيرت أسود بطبعة زرقاء، هودي فاتح، وطابلو هندسي داخل استوديو داكن" fetchpriority="high"><span class="hero-v2-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m4 20 4.5-1 10.4-10.4a2 2 0 0 0-2.8-2.8L5.7 16.2 4 20Z"/><path d="m14.8 7.1 2.8 2.8"/></svg> صمّمها بطريقتك</span><span class="hero-v2-caption"><i></i> ORIGINAL IDEAS / VANTA PRINT</span></div>
+        <div class="hero-v2-photo"><img class="hero-gallery-frame is-active" src="assets/hero-editorial.png" alt="تيشيرت أسود بطبعة زرقاء، هودي فاتح، وطابلو هندسي داخل استوديو داكن" fetchpriority="high"><img class="hero-gallery-frame" src="assets/anime-shirt.jpg" alt="تيشيرت أنمي بطباعة مميزة" decoding="async"><img class="hero-gallery-frame" src="assets/football-hoodie.jpg" alt="هودي مستوحى من الكرة" decoding="async"><span class="hero-v2-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m4 20 4.5-1 10.4-10.4a2 2 0 0 0-2.8-2.8L5.7 16.2 4 20Z"/><path d="m14.8 7.1 2.8 2.8"/></svg> صمّمها بطريقتك</span><span class="hero-v2-caption"><i></i> ORIGINAL IDEAS / VANTA PRINT</span><div class="hero-gallery-controls"><button class="hero-gallery-toggle" type="button" aria-label="وقف تبديل الصور" aria-pressed="false"><svg class="icon-pause" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M8 5v14M16 5v14"/></svg><svg class="icon-play" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m8 5 11 7-11 7V5Z"/></svg></button><div class="hero-gallery-dots" aria-label="صور المنتوج"><button class="is-active" type="button" aria-label="الصورة 1" aria-current="true"></button><button type="button" aria-label="الصورة 2"></button><button type="button" aria-label="الصورة 3"></button></div><span class="hero-gallery-count">01 / 03</span></div></div>
+        <ul class="hero-mobile-benefits"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 2.5 2.5L16 9"/></svg>تصاميم أصلية</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 2.5 2.5L16 9"/></svg>طباعة حسب الطلب</li></ul>
       </div>
       <nav class="container hero-v2-strip" aria-label="تصفح أصناف المنتجات">
         <a href="#products" data-type-link="تيشيرت"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M13 6h14l8 6-4 7-5-3v18H14V16l-5 3-4-7 8-6Z"/><path d="M15 6c1 3 3 4 5 4s4-1 5-4"/></svg><span>تيشيرتات</span></a>

@@ -1,6 +1,5 @@
 (() => {
-  const strip = document.querySelector('.hero-v2-strip');
-  if (!strip) return;
+  document.querySelectorAll('.hero-v2-strip, .hero-style-chips').forEach(strip => {
 
   let drag = null;
   let suppressClick = false;
@@ -41,4 +40,5 @@
     event.stopImmediatePropagation();
     suppressClick = false;
   }, true);
+  });
 })();
