@@ -379,6 +379,60 @@ body.menu-open{overflow:hidden}
   .style-marquee-track>span{display:none}
 }
 
+/* A bright editorial cover and four worlds for the compact storefront. */
+.mobile-banner-dots{display:none}
+@media(min-width:821px){
+  .collection-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .collection-card{height:440px}
+}
+@media(min-width:821px) and (max-width:1099px){
+  .collection-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .collection-card{height:410px}
+}
+@media(max-width:620px){
+  .style-marquee{display:none}
+  .mobile-world-banner{height:clamp(220px,56vw,315px);background:#20222e}
+  .mobile-world-banner .mobile-banner-frame{position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:cover;object-position:center 46%;opacity:0;transition:opacity 1.05s ease}
+  .mobile-world-banner .mobile-banner-frame.is-active{opacity:1}
+  .mobile-world-banner .mobile-banner-frame:nth-child(2){object-position:center 38%}
+  .mobile-world-banner .mobile-banner-frame:nth-child(3){object-position:center 45%}
+  .mobile-world-shade{background:linear-gradient(0deg,#07091387,transparent 42%),linear-gradient(90deg,#05071025,#05071085 53%,#05071018)}
+  .mobile-world-brand{justify-content:flex-end;padding-bottom:38px}
+  .mobile-world-brand h1{font-size:clamp(51px,14vw,78px);letter-spacing:-.075em;margin-bottom:3px}
+  .mobile-world-brand span{font-size:clamp(8px,2.3vw,12px);letter-spacing:.3em}
+  .mobile-banner-dots{position:absolute;right:0;left:0;bottom:11px;z-index:5;display:flex;direction:ltr;justify-content:center;gap:6px}
+  .mobile-banner-dots button{width:17px;height:4px;padding:0;border:0;border-radius:8px;background:#ffffffe0;box-shadow:0 1px 5px #0008;cursor:pointer;transition:width .35s,background .35s}
+  .mobile-banner-dots button.is-active{width:27px;background:#2562ff}
+  .mobile-banner-dots button:focus-visible{outline:2px solid #fff;outline-offset:3px}
+  .collections{background:#f8f6ef;padding:11px 0 34px;color:#0e1119}
+  .collections>.container{width:calc(100% - 24px)}
+  .collections .section-head{margin-bottom:12px}
+  .collections .section-head .mobile-collections-title{color:#101218;font-size:clamp(22px,6.2vw,31px);padding-bottom:5px}
+  .collection-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .collection-card,.collection-card:last-child{height:clamp(240px,58vw,380px);border:0;border-radius:13px;overflow:hidden;background:#17202e}
+  .collection-card:after{background:linear-gradient(0deg,#000b,transparent 50%),linear-gradient(90deg,#0003,transparent 40%)}
+  .collection-visual .collection-mobile-art{object-position:center center}
+  .collection-card.anime .collection-mobile-art{object-position:center 35%}
+  .collection-card.football .collection-mobile-art{object-position:center 44%}
+  .collection-card.tv .collection-mobile-art{object-position:center 40%}
+  .collection-card.motivation .collection-mobile-art{object-position:center 50%}
+  .collection-mobile-title{justify-content:flex-end;padding:0 6px 22px}
+  .collection-mobile-title strong{font-size:clamp(23px,7vw,43px);letter-spacing:-.065em;white-space:nowrap}
+  .collection-card.football .collection-mobile-title strong{font-size:clamp(21px,6.2vw,39px)}
+  .collection-card.tv .collection-mobile-title strong{font-size:clamp(20px,6vw,36px)}
+  .collection-card.motivation .collection-mobile-title strong{font-size:clamp(19px,5.8vw,36px)}
+  .collection-mobile-title span{font-size:clamp(10px,3vw,14px);line-height:1.35}
+  .collection-mobile-arrow{left:9px;bottom:9px;width:20px;height:20px}
+}
+@media(max-width:370px){
+  .collection-card,.collection-card:last-child{height:62vw}
+  .collection-mobile-title strong{font-size:7vw}
+  .collection-card.motivation .collection-mobile-title strong{font-size:5.8vw}
+}
+@media(prefers-reduced-motion:reduce){
+  .mobile-world-banner .mobile-banner-frame,.mobile-banner-dots button{transition:none!important}
+}
+
 /* Keep the mobile footer useful without letting it dominate the page. */
 @media(max-width:620px){
   .footer{padding:27px 0 0}

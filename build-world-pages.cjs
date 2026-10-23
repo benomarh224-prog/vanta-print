@@ -21,14 +21,15 @@ const mobileNavStart = home.indexOf('        <nav class="mobile-nav"');
 const mobileNavEnd = home.indexOf('        </nav>', mobileNavStart);
 if (mobileNavStart < 0 || mobileNavEnd < 0) throw new Error('Mobile navigation not found');
 home = home.slice(0, mobileNavStart) + `        <nav class="mobile-nav" aria-label="تصفح الموقع">
-          <a href="index.html#collections"><span class="mobile-menu-index">01</span><span class="mobile-menu-link-text"><strong>العوالم</strong><small>أنمي، كرة وتحفيز</small></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+          <a href="index.html#collections"><span class="mobile-menu-index">01</span><span class="mobile-menu-link-text"><strong>العوالم</strong><small>أنمي، كرة، مسلسلات وتحفيز</small></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
           <a href="index.html#offers"><span class="mobile-menu-index">02</span><span class="mobile-menu-link-text"><strong>عروض ترحيبية</strong><small>هوديات 250 د.م · التوصيل مجاني</small></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
           <a href="anime.html"><span class="mobile-menu-index">03</span><span class="mobile-menu-link-text"><strong>عالم الأنمي</strong><small>تصاميم مستوحاة من الخيال</small></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
           <a href="football.html"><span class="mobile-menu-index">04</span><span class="mobile-menu-link-text"><strong>عالم الكرة</strong><small>الشغف اللي كيلبسو</small></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
-          <a href="motivation.html"><span class="mobile-menu-index">05</span><span class="mobile-menu-link-text"><strong>طاقة التحفيز</strong><small>كل نهار خطوة جديدة</small></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+          <a href="tv.html"><span class="mobile-menu-index">05</span><span class="mobile-menu-link-text"><strong>عالم المسلسلات</strong><small>حكايات فستايل جديد</small></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+          <a href="motivation.html"><span class="mobile-menu-index">06</span><span class="mobile-menu-link-text"><strong>طاقة التحفيز</strong><small>كل نهار خطوة جديدة</small></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
         </nav>` + home.slice(mobileNavEnd + '        </nav>'.length);
 
-for (const world of ['anime', 'football', 'motivation']) {
+for (const world of ['anime', 'football', 'tv', 'motivation']) {
   home = home.replaceAll(`href="#products" data-filter-link="${world}"`, `href="${world}.html"`);
 }
 home = home.replace('<a href="#products">المنتجات</a>', '<a href="#collections">العوالم</a>');
@@ -39,25 +40,32 @@ fs.writeFileSync(homeFile, home);
 
 const worlds = {
   anime: {
-    index: '01', english: 'ANIME', name: 'عالم الأنمي', hero: 'world-anime.jpg',
+    index: '01', english: 'ANIME', name: 'عالم الأنمي', hero: 'world-anime-color.png',
     description: 'حكايات ورسومات أصلية مستوحاة من طاقة الأنمي، مطبوعة على قطع كتعبّر على الخيال ديالك.',
     headline: 'خيالك، على ستايلك.', lead: 'من التيشيرت للحائط، هاد العالم فيه تفاصيل جريئة وشخصيات وأجواء أصلية كتعيش معاك كل نهار.',
     productIntro: 'قطع كتجمع الفن والطباعة اليومية، وتخلي الستايل ديالك عندو حكاية.',
-    imageAlt: 'لوحة أصلية بالأبيض والأسود مستوحاة من عالم الأنمي'
+    imageAlt: 'شخصية محارب خيالية بألوان الأزرق والأحمر وسط أزهار الكرز'
   },
   football: {
-    index: '02', english: 'FOOTBALL', name: 'عالم الكرة', hero: 'world-football.jpg',
+    index: '02', english: 'FOOTBALL', name: 'عالم الكرة', hero: 'world-football-color.png',
     description: 'شغف الملعب كيمشي معاك من المدرجات للشارع، على هوديات وطابلوات بطابع قوي.',
     headline: 'الشغف كيبان.', lead: 'الأضواء، اللحظة الحاسمة، والإحساس ديال الماتش. اختار قطعة كتفكرك علاش الكرة أكثر من لعبة.',
     productIntro: 'من الهودي المريح للطابلو اللي كيزيد حماس للحائط ديالك.',
-    imageAlt: 'لاعب كرة قدم في ملعب ليلي بالأبيض والأسود ولمسات زرقاء'
+    imageAlt: 'لاعب كرة قدم في ملعب مضيء عند الغروب'
   },
   motivation: {
-    index: '03', english: 'MOTIVATION', name: 'طاقة التحفيز', hero: 'world-motivation.jpg',
+    index: '04', english: 'MOTIVATION', name: 'طاقة التحفيز', hero: 'world-motivation-color.png',
     description: 'رسائل صغيرة وتفاصيل قوية كتفكرك كل نهار تزيد خطوة لقدّام.',
     headline: 'زيد خطوة لقدّام.', lead: 'كل قمة كتبدأ من قرار. لبس الفكرة أو خليها قدّام عينيك فبلاصتك، وخليها تذكرك باللي جاي.',
     productIntro: 'تصاميم للبس وللحائط كتخلي الطاقة الإيجابية حاضرة.',
-    imageAlt: 'متسلق فوق قمة جبلية بالأبيض والأسود ولمسات زرقاء'
+    imageAlt: 'متسلق فوق قمة جبلية عند شروق الشمس'
+  },
+  tv: {
+    index: '03', english: 'TV SERIES', name: 'عالم المسلسلات', hero: 'world-tv-color.png',
+    description: 'حكايات وأجواء درامية أصلية مطبوعة على قطع كتعيش معاك خارج الشاشة.',
+    headline: 'الحكاية كتكمّل معاك.', lead: 'من تفاصيل الشخصيات الغامضة لألوان الملصقات السينمائية، لقى ستايل فيه قصة جديدة.',
+    productIntro: 'قطع مستوحاة من أجواء المسلسلات بتصاميم فنية أصلية.',
+    imageAlt: 'هودي أسود بتصميم درامي أصلي بجانب ملصق فني'
   }
 };
 
@@ -108,4 +116,4 @@ ${widgets}</body>
   fs.writeFileSync(path.join(dist, `${slug}.html`), html);
 }
 
-console.log('Updated the home page and generated anime, football, and motivation pages.');
+console.log('Updated the home page and generated four world pages.');
