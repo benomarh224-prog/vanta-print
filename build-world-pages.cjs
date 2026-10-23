@@ -24,7 +24,7 @@ home = home.slice(0, mobileNavStart) + `        <nav class="mobile-nav" aria-lab
           <a href="index.html#collections"><span class="mobile-menu-index">01</span><span class="mobile-menu-link-text"><strong>العوالم</strong><small>أنمي، كرة وتحفيز</small></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
           <a href="index.html#offers"><span class="mobile-menu-index">02</span><span class="mobile-menu-link-text"><strong>عروض ترحيبية</strong><small>هوديات 250 د.م · التوصيل مجاني</small></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
           <a href="anime.html"><span class="mobile-menu-index">03</span><span class="mobile-menu-link-text"><strong>عالم الأنمي</strong><small>تصاميم مستوحاة من الخيال</small></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
-          <a href="football.html"><span class="mobile-menu-index">04</span><span class="mobile-menu-link-text"><strong>روح الكرة</strong><small>الشغف اللي كيلبسو</small></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+          <a href="football.html"><span class="mobile-menu-index">04</span><span class="mobile-menu-link-text"><strong>عالم الكرة</strong><small>الشغف اللي كيلبسو</small></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
           <a href="motivation.html"><span class="mobile-menu-index">05</span><span class="mobile-menu-link-text"><strong>طاقة التحفيز</strong><small>كل نهار خطوة جديدة</small></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
         </nav>` + home.slice(mobileNavEnd + '        </nav>'.length);
 
@@ -46,7 +46,7 @@ const worlds = {
     imageAlt: 'لوحة أصلية بالأبيض والأسود مستوحاة من عالم الأنمي'
   },
   football: {
-    index: '02', english: 'FOOTBALL', name: 'روح الكرة', hero: 'world-football.jpg',
+    index: '02', english: 'FOOTBALL', name: 'عالم الكرة', hero: 'world-football.jpg',
     description: 'شغف الملعب كيمشي معاك من المدرجات للشارع، على هوديات وطابلوات بطابع قوي.',
     headline: 'الشغف كيبان.', lead: 'الأضواء، اللحظة الحاسمة، والإحساس ديال الماتش. اختار قطعة كتفكرك علاش الكرة أكثر من لعبة.',
     productIntro: 'من الهودي المريح للطابلو اللي كيزيد حماس للحائط ديالك.',
