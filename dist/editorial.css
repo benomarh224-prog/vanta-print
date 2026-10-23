@@ -1,4 +1,4 @@
-/* VANTA's dark editorial storefront. Core commerce and carousel behavior stay in their existing files. */
+/* NOXwear's dark editorial storefront. Core commerce and carousel behavior stay in their existing files. */
 :root{--night:#090a0e;--night-2:#101218;--night-3:#181b23;--night-line:#2b2e38;--night-muted:#a4a9b5;--blue:#335cff;--lime:#e5fa36}
 body{background:var(--night);color:#f7f7f4}
 ::selection{background:var(--lime);color:#0b0d12}
@@ -27,7 +27,7 @@ body{background:var(--night);color:#f7f7f4}
 .hero-v2{background:radial-gradient(circle at 16% 85%,#1035a84a,transparent 28%),#090a0e;padding:32px 0 0;overflow:hidden}
 .hero-v2-grid{grid-template-columns:minmax(0,.86fr) minmax(0,1.14fr);gap:0;min-height:650px;align-items:stretch}
 .hero-v2-copy{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:54px 7% 58px 2%;position:relative;z-index:2}
-.hero-v2-copy:before{content:'V';position:absolute;right:1%;top:-65px;color:#ffffff08;font:900 clamp(300px,35vw,570px) 'Space Grotesk',sans-serif;line-height:1;pointer-events:none;z-index:-1}
+.hero-v2-copy:before{content:'N';position:absolute;right:1%;top:-65px;color:#ffffff08;font:900 clamp(300px,35vw,570px) 'Space Grotesk',sans-serif;line-height:1;pointer-events:none;z-index:-1}
 .hero-v2-eyebrow{color:var(--lime);font:700 11px 'Space Grotesk',Cairo,sans-serif;letter-spacing:.07em;gap:12px}
 .hero-v2-eyebrow span{background:var(--lime);width:35px}
 .hero-v2 h1{color:#fff;font-size:clamp(62px,6.1vw,94px);line-height:1.21;letter-spacing:-.08em;margin:27px 0 23px;white-space:nowrap}
@@ -436,4 +436,30 @@ body.menu-open{overflow:hidden}
   .custom-form label{margin:9px 0 4px}
   .custom-form textarea{min-height:72px}
   .custom-form .button-dark{font-size:12px}
+}
+
+/* Brand and contact links shared by the home and world pages. */
+.brand-text,.footer-brand .brand-text{display:inline-flex;align-items:baseline;gap:0;letter-spacing:-.07em}
+.brand-text span,.footer-brand .brand-text span{display:inline;margin:0;color:var(--lime);font-size:1em;letter-spacing:inherit}
+.footer-contact{display:flex;align-items:center;gap:11px;margin-top:13px;direction:ltr}
+.footer-phone{color:#f4f4f2;font:700 12px 'Space Grotesk',sans-serif;white-space:nowrap}
+.footer-phone:hover{color:var(--lime)}
+.footer-social{display:flex;align-items:center;gap:6px}
+.footer-social a{display:grid;place-items:center;width:34px;height:34px;border:1px solid #ffffff38;border-radius:8px;color:#d9dde6;transition:color .2s,border-color .2s,background .2s}
+.footer-social a:hover{color:#0b0d12;border-color:var(--lime);background:var(--lime)}
+.footer-social svg{width:17px;height:17px}
+.cart-footer #whatsapp-order[aria-disabled="true"]{opacity:.45;pointer-events:none}
+.cart-footer .copy-order{display:block;margin:12px auto 0;padding:0;border:0;background:none;color:#31354a;text-decoration:underline;font-size:11px;font-weight:800}
+.cart-footer .copy-order:disabled{opacity:.5;cursor:not-allowed}
+@media(max-width:820px){
+  .mobile-menu-contact{display:flex;justify-content:center;gap:7px;margin:14px auto 0;color:var(--lime);font-size:12px;font-weight:800}
+}
+@media(max-width:620px){
+  .site-header .brand-text,.site-header .brand-text span{gap:0;font-size:clamp(17px,5.2vw,23px)}
+  .site-header .brand-text span{color:var(--lime)}
+  .mobile-world-brand h1{font-size:clamp(46px,12.5vw,68px);letter-spacing:-.07em;white-space:nowrap}
+  .footer-top>div:first-child{display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px 12px}
+  .footer-top>div:first-child>p{justify-self:end}
+  .footer-contact{grid-column:1/-1;margin-top:0}
+  .footer-brand .brand-text,.footer-brand .brand-text span{font-size:17px}
 }

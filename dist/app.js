@@ -12,12 +12,12 @@ const $$ = (q,root=document) => [...root.querySelectorAll(q)];
 const esc = s => String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const money = n => `${Number(n).toLocaleString('fr-MA')} د.م`;
 let cart = [];
-try { const saved=JSON.parse(localStorage.getItem('vanta-cart')||'[]'); if(Array.isArray(saved)) cart=saved.filter(x=>x&&typeof x.name==='string'&&Number.isFinite(x.price)&&x.qty>0).slice(0,100); } catch {}
+try { const saved=JSON.parse(localStorage.getItem('noxwear-cart') ?? localStorage.getItem('vanta-cart') ?? '[]'); if(Array.isArray(saved)) cart=saved.filter(x=>x&&typeof x.name==='string'&&Number.isFinite(x.price)&&x.qty>0).slice(0,100); } catch {}
 let activeFilter='all';
 let toastTimer;
 
 function showToast(message){ const el=$('#toast');el.textContent=message;el.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show'),3200); }
-function saveCart(){localStorage.setItem('vanta-cart',JSON.stringify(cart));renderCart();}
+function saveCart(){localStorage.setItem('noxwear-cart',JSON.stringify(cart));renderCart();}
 function renderProducts(visible){
   if (!$('#product-grid')) return;
   $('#product-grid').innerHTML=visible.map(p=>`<article class="product-card reveal in-view"><div class="product-image"><img src="${p.image}" alt="${esc(p.name)}" loading="lazy">${p.badge?`<span class="product-badge">${esc(p.badge)}</span>`:''}<button class="product-action" type="button" data-product="${p.id}" aria-label="شوف تفاصيل ${esc(p.name)}">↗</button></div><div class="product-info"><div><small>${p.tag}</small><h3>${esc(p.name)}</h3></div><strong class="product-price">${money(p.price)}</strong></div></article>`).join('');
@@ -47,11 +47,14 @@ function renderCart(){
   const count=cart.reduce((n,x)=>n+x.qty,0),subtotal=cart.reduce((n,x)=>n+x.price*x.qty,0);
   $$('.cart-count').forEach(el=>{el.textContent=count;el.hidden=count===0});$('#drawer-count').textContent=`(${count})`;$('#subtotal').textContent=money(subtotal);
   $('#cart-items').innerHTML=count?cart.map((x,i)=>`<div class="cart-item"><img src="${esc(x.image||'assets/hero.jpg')}" alt=""><div><h3>${esc(x.name)}</h3><p>${esc([x.size,x.color].filter(Boolean).join(' / '))}</p>${x.desc?`<p>${esc(x.desc).slice(0,150)}</p>`:''}<div class="qty-controls"><button type="button" data-qty="${i}" data-delta="-1" aria-label="نقص الكمية">−</button><span>${x.qty}</span><button type="button" data-qty="${i}" data-delta="1" aria-label="زيد الكمية">+</button></div></div><div><strong>${money(x.price*x.qty)}</strong><button class="remove" type="button" data-remove="${i}">حذف</button></div></div>`).join(''):`<div class="empty-cart"><span>◈</span><strong>السلة باقية خاوية</strong><p>زيد شي قطعة عجبتك وبدا حضّر الطلب ديالك.</p></div>`;
+  const whatsappOrder=$('#whatsapp-order');
+  if(count){whatsappOrder.href='https://wa.me/212645900763?text='+encodeURIComponent(orderText());whatsappOrder.removeAttribute('aria-disabled');}
+  else{whatsappOrder.removeAttribute('href');whatsappOrder.setAttribute('aria-disabled','true');}
   $('#copy-order').disabled=!count;$('#download-order').disabled=!count;
 }
-function orderText(){const lines=['VANTA PRINT — ملخص طلب تجريبي',''];cart.forEach((x,i)=>{lines.push(`${i+1}. ${x.name}`);lines.push(`   ${[x.size,x.color].filter(Boolean).join(' / ')} | الكمية: ${x.qty} | ${money(x.price*x.qty)}`);if(x.desc)lines.push(`   الفكرة: ${x.desc}`)});lines.push('',`المجموع التقريبي: ${money(cart.reduce((n,x)=>n+x.price*x.qty,0))}`,'','الأثمنة نهائية بعد تأكيد التفاصيل مع المتجر.');return lines.join('\n');}
+function orderText(){const lines=['NOXwear — ملخص طلب تجريبي',''];cart.forEach((x,i)=>{lines.push(`${i+1}. ${x.name}`);lines.push(`   ${[x.size,x.color].filter(Boolean).join(' / ')} | الكمية: ${x.qty} | ${money(x.price*x.qty)}`);if(x.desc)lines.push(`   الفكرة: ${x.desc}`)});lines.push('',`المجموع التقريبي: ${money(cart.reduce((n,x)=>n+x.price*x.qty,0))}`,'','الأثمنة نهائية بعد تأكيد التفاصيل مع المتجر.');return lines.join('\n');}
 async function copyOrder(){if(!cart.length)return;try{await navigator.clipboard.writeText(orderText());showToast('تنسخ ملخص الطلب');}catch{const textArea=document.createElement('textarea');textArea.value=orderText();document.body.append(textArea);textArea.select();document.execCommand('copy');textArea.remove();showToast('تنسخ ملخص الطلب');}}
-function downloadOrder(){if(!cart.length)return;const blob=new Blob(['\ufeff'+orderText()],{type:'text/plain;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='vanta-print-order.txt';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);showToast('تحمّل ملخص الطلب');}
+function downloadOrder(){if(!cart.length)return;const blob=new Blob(['\ufeff'+orderText()],{type:'text/plain;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='noxwear-order.txt';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);showToast('تحمّل ملخص الطلب');}
 
 document.addEventListener('click',e=>{
   const typeLink=e.target.closest('[data-type-link]');if(typeLink){setTypeFilter(typeLink.dataset.typeLink);return;}

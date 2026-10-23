@@ -79,8 +79,8 @@ for (const [slug, world] of Object.entries(worlds)) {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#090a0e">
-  <meta name="description" content="VANTA PRINT — ${world.description}">
-  <title>${world.name} — VANTA PRINT</title>
+  <meta name="description" content="NOXwear — ${world.description}">
+  <title>${world.name} — NOXwear</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Permanent+Marker&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
@@ -90,13 +90,13 @@ for (const [slug, world] of Object.entries(worlds)) {
   <script src="app.js" defer></script>
 </head>
 <body data-world="${slug}">
-  <div class="announcement" aria-label="رسالة المتجر"><span>VANTA PRINT / PRINT YOUR WORLD</span><svg class="announcement-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2v20M2 12h20M5 5l14 14M19 5 5 19"/></svg><span>${world.name}</span></div>
+  <div class="announcement" aria-label="رسالة المتجر"><span>NOXwear / PRINT YOUR WORLD</span><svg class="announcement-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2v20M2 12h20M5 5l14 14M19 5 5 19"/></svg><span>${world.name}</span></div>
 ${toHomeLinks(header).replace(`href="${slug}.html"`, `href="${slug}.html" aria-current="page"`)}
   <main>
-    <section class="world-hero" aria-labelledby="world-title"><img class="world-hero-image" src="assets/${world.hero}" alt="${world.imageAlt}" fetchpriority="high"><div class="world-hero-shade" aria-hidden="true"></div><div class="container world-hero-content"><nav class="world-breadcrumb" aria-label="مسار الصفحة"><a href="index.html">الرئيسية</a><span>/</span><a href="index.html#collections">العوالم</a><span>/</span><span aria-current="page">${world.name}</span></nav><span class="world-index">VANTA PRINT / WORLD ${world.index}</span><h1 id="world-title">${world.english}</h1><strong class="world-arabic">${world.name}</strong><p>${world.description}</p><a class="world-hero-link" href="#products">شوف قطع ${world.name} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></div></section>
+    <section class="world-hero" aria-labelledby="world-title"><img class="world-hero-image" src="assets/${world.hero}" alt="${world.imageAlt}" fetchpriority="high"><div class="world-hero-shade" aria-hidden="true"></div><div class="container world-hero-content"><nav class="world-breadcrumb" aria-label="مسار الصفحة"><a href="index.html">الرئيسية</a><span>/</span><a href="index.html#collections">العوالم</a><span>/</span><span aria-current="page">${world.name}</span></nav><span class="world-index">NOXwear / WORLD ${world.index}</span><h1 id="world-title">${world.english}</h1><strong class="world-arabic">${world.name}</strong><p>${world.description}</p><a class="world-hero-link" href="#products">شوف قطع ${world.name} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></div></section>
     <section class="world-intro"><div class="container"><span>${world.index} / THE WORLD</span><h2>${world.headline}</h2><p>${world.lead}</p></div></section>
     <section class="products section world-products" id="products"><div class="container"><div class="section-head world-products-head"><div><div class="world-products-kicker"><span class="kicker">${world.index} / القطع المختارة</span><span class="result-count">2 منتجات</span></div><h2>اختار من <span>${world.name}.</span></h2></div><p>${world.productIntro}</p></div><div class="product-grid" id="product-grid"></div><p class="sample-note">* الصور والأثمنة نماذج توضيحية، والثمن النهائي كيتأكد حسب تفاصيل الطلب.</p></div></section>
-    <section class="world-next section" aria-labelledby="world-next-title"><div class="container"><div class="world-next-head"><div><span class="kicker">VANTA / MORE WORLDS</span><h2 id="world-next-title">كمل الجولة ديالك.</h2></div><a href="index.html#collections">جميع العوالم <span aria-hidden="true">↗</span></a></div><div class="world-next-grid">${nextCards}</div></div></section>
+    <section class="world-next section" aria-labelledby="world-next-title"><div class="container"><div class="world-next-head"><div><span class="kicker">NOXwear / MORE WORLDS</span><h2 id="world-next-title">كمل الجولة ديالك.</h2></div><a href="index.html#collections">جميع العوالم <span aria-hidden="true">↗</span></a></div><div class="world-next-grid">${nextCards}</div></div></section>
     <section class="world-custom"><div class="container world-custom-inner"><div><span>صمّمها بطريقتك</span><h2>باغي تصميم خاص بيك؟</h2><p>وصف لينا الفكرة ديالك، ونوجدولك ملخص واضح للطلب.</p></div><a href="index.html#custom">بدا التصميم ديالك <span aria-hidden="true">↗</span></a></div></section>
   </main>
 ${toHomeLinks(footer)}
