@@ -451,6 +451,59 @@ body.menu-open{overflow:hidden}
 .cart-footer #whatsapp-order[aria-disabled="true"]{opacity:.45;pointer-events:none}
 .cart-footer .copy-order{display:block;margin:12px auto 0;padding:0;border:0;background:none;color:#31354a;text-decoration:underline;font-size:11px;font-weight:800}
 .cart-footer .copy-order:disabled{opacity:.5;cursor:not-allowed}
+
+/* Welcome drop: product photography, one clear price, and free delivery. */
+.welcome-section{background:#0b0d12;border-top:1px solid #ffffff20}
+.welcome-heading{display:flex;align-items:end;justify-content:space-between;gap:28px;margin-bottom:27px}
+.welcome-eyebrow{color:var(--lime);font:700 11px 'Space Grotesk',sans-serif;letter-spacing:.16em}
+.welcome-heading h2{margin:6px 0 6px;color:#f7f8fb;font-size:clamp(34px,4.7vw,60px);line-height:1.25}
+.welcome-heading h2 em{font-style:normal;color:#6d86ff}
+.welcome-heading p{max-width:560px;margin:0;color:#b8bfcc;font-size:13px;line-height:1.8}
+.welcome-perks{display:flex;align-items:center;gap:16px;flex:none;padding:12px 17px;border:1px solid #ffffff30;border-radius:10px;color:#fff}
+.welcome-perks strong{font-size:24px;white-space:nowrap}
+.welcome-perks small{font-size:10px;color:#adb5c6}
+.welcome-perks span{padding:7px 10px;border-radius:4px;background:var(--lime);color:#111318;font-size:11px;font-weight:900;white-space:nowrap}
+.welcome-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.welcome-grid .product-image{aspect-ratio:.8;border:1px solid #ffffff1d;border-radius:11px;background:#22252a}
+.welcome-grid .product-image{cursor:pointer}
+.welcome-grid .product-image img{object-position:center center}
+.welcome-grid .product-info{align-items:start}
+.welcome-grid .product-price{margin-top:18px}
+.offer-delivery{display:inline-block;margin-top:6px;color:var(--lime);font-size:11px;font-weight:800}
+.welcome-note{margin:22px 0 0;color:#aeb5c2;font-size:11px}
+.dialog-offer{color:#2048ca!important;font-weight:900}
+.cart-items{min-height:0}
+.cart-footer{max-height:68dvh;overflow-y:auto;overscroll-behavior:contain}
+.cart-footer .shipping-note{margin:5px 0 10px;color:#315bce;font-size:11px;font-weight:800}
+.checkout-fields{display:grid;grid-template-columns:1fr 1fr;gap:8px 10px;margin:9px 0 12px}
+.checkout-fields label{display:block;color:#252836;font-size:10px;font-weight:800}
+.checkout-fields label:last-child{grid-column:1/-1}
+.checkout-fields input{display:block;width:100%;min-width:0;height:38px;margin-top:4px;padding:8px 10px;border:1px solid #c9cbd1;border-radius:5px;background:#fff;color:#101318;font:600 12px Cairo,sans-serif}
+.checkout-fields input:focus{outline:2px solid #4868ed;outline-offset:1px}
+.cart-footer #whatsapp-order{display:flex;justify-content:space-between;align-items:center;min-height:44px;border:0;text-align:right;font-size:12px}
+.cart-footer #whatsapp-order:disabled{opacity:.5;cursor:not-allowed}
+.cart-footer .checkout-help{margin:7px 0 0;font-size:10px}
+.order-tools{display:flex;justify-content:center;align-items:center;gap:20px}
+.order-tools .copy-order,.order-tools .download-order{display:block;margin:8px 0 0;padding:0;border:0;background:none;color:#414658;font-size:10px;text-decoration:underline;font-weight:800}
+@media(max-width:820px){
+  .welcome-heading{align-items:start;flex-direction:column;gap:13px}
+  .welcome-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 10px}
+}
+@media(max-width:620px){
+  .welcome-section.section{padding:35px 0 39px}
+  .welcome-heading{margin-bottom:17px}
+  .welcome-heading h2{font-size:31px}
+  .welcome-heading p{font-size:11px}
+  .welcome-perks{width:100%;justify-content:space-between;padding:9px 12px}
+  .welcome-perks strong{font-size:20px}
+  .welcome-grid .product-image{aspect-ratio:.79}
+  .welcome-grid .product-info{display:block}
+  .welcome-grid .product-info h3{font-size:12px;line-height:1.5}
+  .welcome-grid .product-price{margin:6px 0 0;font-size:13px}
+  .welcome-note{line-height:1.6}
+  .cart-footer{max-height:68dvh;padding:13px 18px 17px}
+  .cart-items{padding:14px 18px}
+}
 @media(max-width:820px){
   .mobile-menu-contact{display:flex;justify-content:center;gap:7px;margin:14px auto 0;color:var(--lime);font-size:12px;font-weight:800}
 }

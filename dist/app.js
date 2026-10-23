@@ -1,4 +1,8 @@
 const products = [
+  { id:'welcome-keffiyeh', name:'هودي الكوفية الأبيض', category:'welcome', type:'هودي', tag:'NOXWEAR / WELCOME', price:250, image:'assets/welcome-keffiyeh-hoodie.jpg', badge:'عرض ترحيبي', welcomeOffer:true, desc:'هودي أبيض بطبعة الكوفية على الظهر. الثمن 250 د.م والتوصيل مجاني ضمن العرض الترحيبي.', sizes:['S','M','L','XL','XXL'], colors:['أبيض'] },
+  { id:'welcome-zenin', name:'هودي Zenin الأسود', category:'anime', type:'هودي', tag:'ANIME / WELCOME', price:250, image:'assets/welcome-zenin-hoodie.jpg', badge:'عرض ترحيبي', welcomeOffer:true, desc:'هودي أسود برسمة أنمي بالأبيض والأحمر على الظهر. الثمن 250 د.م والتوصيل مجاني ضمن العرض الترحيبي.', sizes:['S','M','L','XL','XXL'], colors:['أسود'] },
+  { id:'welcome-motorsport', name:'هودي سيارة رياضية الأسود', category:'welcome', type:'هودي', tag:'MOTORSPORT / WELCOME', price:250, image:'assets/welcome-motorsport-hoodie.jpg', badge:'عرض ترحيبي', welcomeOffer:true, desc:'هودي أسود بطبعة سيارة رياضية على الظهر. الثمن 250 د.م والتوصيل مجاني ضمن العرض الترحيبي.', sizes:['S','M','L','XL','XXL'], colors:['أسود'] },
+  { id:'welcome-anime-white', name:'هودي أنمي الأبيض', category:'anime', type:'هودي', tag:'ANIME / WELCOME', price:250, image:'assets/welcome-anime-white-hoodie.jpg', badge:'عرض ترحيبي', welcomeOffer:true, desc:'هودي أبيض برسمة أنمي بالأسود على الظهر. الثمن 250 د.م والتوصيل مجاني ضمن العرض الترحيبي.', sizes:['S','M','L','XL','XXL'], colors:['أبيض'] },
   { id:'anime-tee', name:'تيشيرت Night Warrior', category:'anime', type:'تيشيرت', tag:'ANIME / TEE', price:149, image:'assets/anime-shirt.jpg', badge:'الأكثر طلباً', desc:'رسمة أصلية مستوحاة من طاقة الأنمي، على تيشيرت كاجوال بطبع واضح وحضور قوي.', sizes:['S','M','L','XL','XXL'], colors:['أسود','أبيض'] },
   { id:'football-hoodie', name:'هودي Stadium Energy', category:'football', type:'هودي', tag:'FOOTBALL / HOODIE', price:279, image:'assets/football-hoodie.jpg', badge:'جديد', desc:'أجواء الملعب والشغف ديال الكرة في هودي مريح بستايل يومي.', sizes:['S','M','L','XL','XXL'], colors:['كريمي','أسود'] },
   { id:'anime-canvas', name:'طابلو Neon City', category:'anime', type:'طابلو', tag:'ANIME / CANVAS', price:199, image:'assets/anime-canvas.jpg', badge:'فن الحائط', desc:'مدينة خيالية بإضاءة غروب قوية كتزيد جو مختلف للحائط ديالك.', sizes:['30×40 سم','40×60 سم','60×90 سم'], colors:['إطار أسود','بلا إطار'] },
@@ -18,9 +22,11 @@ let toastTimer;
 
 function showToast(message){ const el=$('#toast');el.textContent=message;el.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show'),3200); }
 function saveCart(){localStorage.setItem('noxwear-cart',JSON.stringify(cart));renderCart();}
+function productCard(p){return `<article class="product-card reveal in-view"><div class="product-image" data-product="${p.id}"><img src="${p.image}" alt="${esc(p.name)}" loading="lazy">${p.badge?`<span class="product-badge">${esc(p.badge)}</span>`:''}<button class="product-action" type="button" data-product="${p.id}" aria-label="شوف تفاصيل ${esc(p.name)}">↗</button></div><div class="product-info"><div><small>${p.tag}</small><h3>${esc(p.name)}</h3>${p.welcomeOffer?'<span class="offer-delivery">التوصيل مجاني</span>':''}</div><strong class="product-price">${money(p.price)}</strong></div></article>`;}
+function renderWelcomeOffers(){const grid=$('#welcome-grid');if(grid)grid.innerHTML=products.filter(p=>p.welcomeOffer).map(productCard).join('');}
 function renderProducts(visible){
   if (!$('#product-grid')) return;
-  $('#product-grid').innerHTML=visible.map(p=>`<article class="product-card reveal in-view"><div class="product-image"><img src="${p.image}" alt="${esc(p.name)}" loading="lazy">${p.badge?`<span class="product-badge">${esc(p.badge)}</span>`:''}<button class="product-action" type="button" data-product="${p.id}" aria-label="شوف تفاصيل ${esc(p.name)}">↗</button></div><div class="product-info"><div><small>${p.tag}</small><h3>${esc(p.name)}</h3></div><strong class="product-price">${money(p.price)}</strong></div></article>`).join('');
+  $('#product-grid').innerHTML=visible.map(productCard).join('');
   if ($('.result-count')) $('.result-count').textContent=`${visible.length} ${visible.length===1?'منتج':'منتجات'}`;
 }
 function setFilter(filter){
@@ -37,7 +43,7 @@ function setTypeFilter(type){
 function openDialog(id){
   const p=products.find(x=>x.id===id);if(!p)return;
   const dialog=$('#product-dialog');
-  $('#dialog-content').innerHTML=`<div class="dialog-grid"><img src="${p.image}" alt="${esc(p.name)}"><div class="dialog-detail"><small>${p.tag}</small><h2>${esc(p.name)}</h2><p>${esc(p.desc)}</p><strong class="dialog-price">ابتداءً من ${money(p.price)}</strong><div class="choice-label">${p.type==='طابلو'?'القياس':'المقاس'}</div><div class="choice-row" data-choice="size">${p.sizes.map((s,i)=>`<button class="choice ${i===0?'selected':''}" type="button" data-value="${esc(s)}">${esc(s)}</button>`).join('')}</div><div class="choice-label">${p.type==='طابلو'?'الإطار':'اللون'}</div><div class="choice-row" data-choice="color">${p.colors.map((c,i)=>`<button class="choice ${i===0?'selected':''}" type="button" data-value="${esc(c)}">${esc(c)}</button>`).join('')}</div><button class="button button-dark dialog-add" type="button" data-add="${p.id}">زيد للسلة <span>↗</span></button><p class="dialog-hint">الثمن تقريبي وكيختلف حسب المقاس والتخصيص.</p></div></div>`;
+  $('#dialog-content').innerHTML=`<div class="dialog-grid"><img src="${p.image}" alt="${esc(p.name)}"><div class="dialog-detail"><small>${p.tag}</small><h2>${esc(p.name)}</h2><p>${esc(p.desc)}</p><strong class="dialog-price">${p.welcomeOffer?money(p.price):`ابتداءً من ${money(p.price)}`}</strong>${p.welcomeOffer?'<p class="dialog-offer">عرض ترحيبي · التوصيل مجاني</p>':''}<div class="choice-label">${p.type==='طابلو'?'القياس':'المقاس'}</div><div class="choice-row" data-choice="size">${p.sizes.map((s,i)=>`<button class="choice ${i===0?'selected':''}" type="button" data-value="${esc(s)}">${esc(s)}</button>`).join('')}</div><div class="choice-label">${p.type==='طابلو'?'الإطار':'اللون'}</div><div class="choice-row" data-choice="color">${p.colors.map((c,i)=>`<button class="choice ${i===0?'selected':''}" type="button" data-value="${esc(c)}">${esc(c)}</button>`).join('')}</div><button class="button button-dark dialog-add" type="button" data-add="${p.id}">زيد للسلة <span>↗</span></button><p class="dialog-hint">${p.welcomeOffer?'المقاسات حسب التوفر؛ نأكدو ليك التفاصيل فواتساب.':'الثمن تقريبي وكيختلف حسب المقاس والتخصيص.'}</p></div></div>`;
   dialog.showModal();document.body.classList.add('locked');
 }
 function addItem(item){const key=[item.id,item.size,item.color,item.desc||''].join('|');const found=cart.find(x=>x.key===key);if(found)found.qty++;else cart.push({...item,key,qty:1});saveCart();showToast('تزادت القطعة للسلة');}
@@ -47,12 +53,21 @@ function renderCart(){
   const count=cart.reduce((n,x)=>n+x.qty,0),subtotal=cart.reduce((n,x)=>n+x.price*x.qty,0);
   $$('.cart-count').forEach(el=>{el.textContent=count;el.hidden=count===0});$('#drawer-count').textContent=`(${count})`;$('#subtotal').textContent=money(subtotal);
   $('#cart-items').innerHTML=count?cart.map((x,i)=>`<div class="cart-item"><img src="${esc(x.image||'assets/hero.jpg')}" alt=""><div><h3>${esc(x.name)}</h3><p>${esc([x.size,x.color].filter(Boolean).join(' / '))}</p>${x.desc?`<p>${esc(x.desc).slice(0,150)}</p>`:''}<div class="qty-controls"><button type="button" data-qty="${i}" data-delta="-1" aria-label="نقص الكمية">−</button><span>${x.qty}</span><button type="button" data-qty="${i}" data-delta="1" aria-label="زيد الكمية">+</button></div></div><div><strong>${money(x.price*x.qty)}</strong><button class="remove" type="button" data-remove="${i}">حذف</button></div></div>`).join(''):`<div class="empty-cart"><span>◈</span><strong>السلة باقية خاوية</strong><p>زيد شي قطعة عجبتك وبدا حضّر الطلب ديالك.</p></div>`;
-  const whatsappOrder=$('#whatsapp-order');
-  if(count){whatsappOrder.href='https://wa.me/212645900763?text='+encodeURIComponent(orderText());whatsappOrder.removeAttribute('aria-disabled');}
-  else{whatsappOrder.removeAttribute('href');whatsappOrder.setAttribute('aria-disabled','true');}
+  const welcomeOnly=count>0&&cart.every(x=>products.some(p=>p.id===x.id&&p.welcomeOffer));
+  $('#shipping-note').textContent=welcomeOnly?'التوصيل: مجاني لطلبات العرض الترحيبي':'التوصيل كيتأكد مع المتجر. هوديات العرض الترحيبي توصيلها مجاني.';
+  $('#subtotal-label').textContent=welcomeOnly?'مجموع الطلب':'المجموع التقريبي';
+  $('#whatsapp-order').disabled=!count;
   $('#copy-order').disabled=!count;$('#download-order').disabled=!count;
 }
-function orderText(){const lines=['NOXwear — ملخص طلب تجريبي',''];cart.forEach((x,i)=>{lines.push(`${i+1}. ${x.name}`);lines.push(`   ${[x.size,x.color].filter(Boolean).join(' / ')} | الكمية: ${x.qty} | ${money(x.price*x.qty)}`);if(x.desc)lines.push(`   الفكرة: ${x.desc}`)});lines.push('',`المجموع التقريبي: ${money(cart.reduce((n,x)=>n+x.price*x.qty,0))}`,'','الأثمنة نهائية بعد تأكيد التفاصيل مع المتجر.');return lines.join('\n');}
+function orderText(){
+  const welcomeOnly=cart.length>0&&cart.every(x=>products.some(p=>p.id===x.id&&p.welcomeOffer));
+  const lines=['سلام، بغيت نكمل طلب من NOXwear:',''];
+  cart.forEach((x,i)=>{lines.push(`${i+1}. ${x.name}`);lines.push(`   المقاس/القياس: ${x.size||'يتحدد لاحقاً'} | اللون/الإطار: ${x.color||'يتحدد لاحقاً'}`);lines.push(`   الكمية: ${x.qty} | الثمن: ${money(x.price*x.qty)}`);if(x.desc)lines.push(`   الفكرة: ${x.desc}`)});
+  lines.push('',`${welcomeOnly?'المجموع':'المجموع التقريبي'}: ${money(cart.reduce((n,x)=>n+x.price*x.qty,0))}`,welcomeOnly?'التوصيل: مجاني (عرض ترحيبي)':'التوصيل: كيتأكد مع المتجر؛ هوديات العرض الترحيبي توصيلها مجاني');
+  const form=$('#checkout-form');if(form){const name=$('#checkout-name').value.trim(),city=$('#checkout-city').value.trim(),address=$('#checkout-address').value.trim();if(name)lines.push(`الاسم: ${name}`);if(city)lines.push(`المدينة: ${city}`);if(address)lines.push(`العنوان: ${address}`);}
+  if(!welcomeOnly)lines.push('ثمن القطع الأخرى قابل للتأكيد حسب التفاصيل.');
+  return lines.join('\n');
+}
 async function copyOrder(){if(!cart.length)return;try{await navigator.clipboard.writeText(orderText());showToast('تنسخ ملخص الطلب');}catch{const textArea=document.createElement('textarea');textArea.value=orderText();document.body.append(textArea);textArea.select();document.execCommand('copy');textArea.remove();showToast('تنسخ ملخص الطلب');}}
 function downloadOrder(){if(!cart.length)return;const blob=new Blob(['\ufeff'+orderText()],{type:'text/plain;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='noxwear-order.txt';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);showToast('تحمّل ملخص الطلب');}
 
@@ -70,6 +85,7 @@ $$('.filter').forEach(b=>b.addEventListener('click',()=>setFilter(b.dataset.filt
 $$('.cart-toggle,.footer-cart').forEach(b=>b.addEventListener('click',openCart));
 $('#cart-close').addEventListener('click',closeCart);$('#overlay').addEventListener('click',closeCart);
 $('#copy-order').addEventListener('click',copyOrder);$('#download-order').addEventListener('click',downloadOrder);
+$('#checkout-form').addEventListener('submit',e=>{if(!cart.length){e.preventDefault();return;}$('#checkout-text').value=orderText();});
 $('.dialog-close').addEventListener('click',()=>$('#product-dialog').close());
 $('#product-dialog').addEventListener('close',()=>document.body.classList.remove('locked'));
 $('#product-dialog').addEventListener('click',e=>{if(e.target===$('#product-dialog'))$('#product-dialog').close()});
@@ -100,4 +116,4 @@ mobileMenu.addEventListener('click',e=>{const r=mobileMenu.getBoundingClientRect
 matchMedia('(min-width: 821px)').addEventListener('change',e=>{if(e.matches)closeMenu(false)});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('#cart-drawer').classList.contains('open'))closeCart()});
 const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('in-view');observer.unobserve(entry.target)}}),{threshold:.09});$$('.reveal').forEach(el=>observer.observe(el));
-setFilter(document.body.dataset.world || 'all');renderCart();
+renderWelcomeOffers();setFilter(document.body.dataset.world || 'all');renderCart();
