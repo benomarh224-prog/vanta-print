@@ -61,7 +61,6 @@ function renderCart(){
   $('#shipping-note').textContent='التوصيل مجاني خلال 24–48 ساعة بعد تأكيد الطلب. طريقة أداء التسبيق كنأكدوها فواتساب.';
   $('#subtotal-label').textContent='مجموع الطلب';
   $('#whatsapp-order').disabled=!count;
-  $('#copy-order').disabled=!count;$('#download-order').disabled=!count;
 }
 function orderText(){
   const lines=['سلام، بغيت نكمل طلب من NOXwear:',''];
@@ -71,9 +70,6 @@ function orderText(){
   const form=$('#checkout-form');if(form){const name=$('#checkout-name').value.trim(),city=$('#checkout-city').value.trim(),address=$('#checkout-address').value.trim();if(name)lines.push(`الاسم: ${name}`);if(city)lines.push(`المدينة: ${city}`);if(address)lines.push(`العنوان: ${address}`);}
   return lines.join('\n');
 }
-async function copyOrder(){if(!cart.length)return;try{await navigator.clipboard.writeText(orderText());showToast('تنسخ ملخص الطلب');}catch{const textArea=document.createElement('textarea');textArea.value=orderText();document.body.append(textArea);textArea.select();document.execCommand('copy');textArea.remove();showToast('تنسخ ملخص الطلب');}}
-function downloadOrder(){if(!cart.length)return;const blob=new Blob(['\ufeff'+orderText()],{type:'text/plain;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='noxwear-order.txt';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);showToast('تحمّل ملخص الطلب');}
-
 document.addEventListener('click',e=>{
   const typeLink=e.target.closest('[data-type-link]');if(typeLink){setTypeFilter(typeLink.dataset.typeLink);return;}
   const filter=e.target.closest('[data-filter]');if(filter){setFilter(filter.dataset.filter);return;}
@@ -87,7 +83,6 @@ document.addEventListener('click',e=>{
 $$('.filter').forEach(b=>b.addEventListener('click',()=>setFilter(b.dataset.filter)));
 $$('.cart-toggle,.footer-cart').forEach(b=>b.addEventListener('click',openCart));
 $('#cart-close').addEventListener('click',closeCart);$('#overlay').addEventListener('click',closeCart);
-$('#copy-order').addEventListener('click',copyOrder);$('#download-order').addEventListener('click',downloadOrder);
 $('#checkout-form').addEventListener('submit',e=>{if(!cart.length){e.preventDefault();return;}$('#checkout-text').value=orderText();});
 $('.dialog-close').addEventListener('click',()=>$('#product-dialog').close());
 $('#product-dialog').addEventListener('close',()=>document.body.classList.remove('locked'));

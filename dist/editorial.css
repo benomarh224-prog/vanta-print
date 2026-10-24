@@ -503,8 +503,6 @@ body.menu-open{overflow:hidden}
 .footer-social a:hover{color:#0b0d12;border-color:var(--lime);background:var(--lime)}
 .footer-social svg{width:17px;height:17px}
 .cart-footer #whatsapp-order[aria-disabled="true"]{opacity:.45;pointer-events:none}
-.cart-footer .copy-order{display:block;margin:12px auto 0;padding:0;border:0;background:none;color:#31354a;text-decoration:underline;font-size:11px;font-weight:800}
-.cart-footer .copy-order:disabled{opacity:.5;cursor:not-allowed}
 
 /* Welcome drop: product photography, one clear price, and free delivery. */
 .welcome-section{background:#0b0d12;border-top:1px solid #ffffff20}
@@ -538,8 +536,6 @@ body.menu-open{overflow:hidden}
 .cart-footer #whatsapp-order{display:flex;justify-content:space-between;align-items:center;min-height:44px;border:0;text-align:right;font-size:12px}
 .cart-footer #whatsapp-order:disabled{opacity:.5;cursor:not-allowed}
 .cart-footer .checkout-help{margin:7px 0 0;font-size:10px}
-.order-tools{display:flex;justify-content:center;align-items:center;gap:20px}
-.order-tools .copy-order,.order-tools .download-order{display:block;margin:8px 0 0;padding:0;border:0;background:none;color:#414658;font-size:10px;text-decoration:underline;font-weight:800}
 @media(max-width:820px){
   .welcome-heading{align-items:start;flex-direction:column;gap:13px}
   .welcome-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 10px}
