@@ -646,3 +646,11 @@ body.menu-open{overflow:hidden}
 .cart-footer .payment-summary{display:grid;gap:3px;margin:9px 0 3px;padding-top:8px;border-top:1px solid #dcdde2}
 .cart-footer .payment-summary span{display:flex;justify-content:space-between;align-items:center;gap:10px;color:#414653;font-size:11px;font-weight:700}
 .cart-footer .payment-summary strong{color:#171b24;font-size:12px;white-space:nowrap}
+/* Direct contact stays within reach without covering the cart or mobile menu. */
+.floating-whatsapp{position:fixed;z-index:60;left:calc(20px + env(safe-area-inset-left,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px));width:56px;height:56px;display:grid;place-items:center;border-radius:50%;background:#25d366;color:#062814;box-shadow:0 8px 24px #0006;border:2px solid #d8ffe5;transition:transform .2s ease,opacity .2s ease,box-shadow .2s ease}
+.floating-whatsapp svg{width:30px;height:30px}
+.floating-whatsapp:hover{transform:translateY(-3px);box-shadow:0 12px 28px #0008}
+.floating-whatsapp:focus-visible{outline:3px solid var(--lime);outline-offset:4px}
+body.locked .floating-whatsapp,body.menu-open .floating-whatsapp{opacity:0;pointer-events:none}
+@media(max-width:620px){.floating-whatsapp{left:calc(14px + env(safe-area-inset-left,0px));bottom:calc(14px + env(safe-area-inset-bottom,0px));width:52px;height:52px}.floating-whatsapp svg{width:27px;height:27px}}
+@media(prefers-reduced-motion:reduce){.floating-whatsapp{transition:none}.floating-whatsapp:hover{transform:none}}
