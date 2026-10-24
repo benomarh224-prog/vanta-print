@@ -3,7 +3,7 @@ const vm = require('node:vm');
 const assert = require('node:assert/strict');
 const js = fs.readFileSync('dist/app.js', 'utf8');
 const head = js.slice(0, js.indexOf('function showToast'));
-const order = js.slice(js.indexOf('function orderText(){'), js.indexOf('async function copyOrder'));
+const order = js.slice(js.indexOf('function orderText(){'), js.indexOf("document.addEventListener('click'"));
 function message(cart) {
   const fields = {'#checkout-name':'Houssam Test','#checkout-city':'Casablanca','#checkout-address':'Rue Test 10'};
   const context = {
@@ -20,8 +20,10 @@ assert.match(offer, /Houssam Test/);
 assert.match(offer, /Casablanca/);
 assert.match(offer, /Rue Test 10/);
 const mixed = message([{id:'welcome-zenin',name:'هودي Zenin الأسود',price:250,qty:1,size:'L',color:'أسود'},{id:'anime-tee',name:'تيشيرت',price:149,qty:1,size:'M',color:'أبيض'}]);
-assert.match(mixed, /399 د\.م/);
-assert.match(mixed, /التوصيل: كيتأكد/);
+assert.match(mixed, /500 د\.م/); // Saved legacy prices are normalized to today's unit price.
+assert.match(mixed, /التوصيل: مجاني/);
+assert.match(mixed, /التسبيق لتأكيد الطلب: 50 د\.م/);
+assert.match(mixed, /الباقي عند التسليم: 450 د\.م/);
 const html = fs.readFileSync('dist/index.html','utf8');
 for(const id of ['welcome-grid','checkout-form','checkout-name','checkout-city','checkout-address','checkout-text']) assert.ok(html.includes(`id="${id}"`), id);
 console.log('Offer order summary, shipping, customer fields, and checkout structure: OK');

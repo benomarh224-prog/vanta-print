@@ -91,13 +91,14 @@ for (const [slug, world] of Object.entries(worlds)) {
   <meta name="theme-color" content="#090a0e">
   <meta name="description" content="NOXwear — ${world.description}">
   <title>${world.name} — NOXwear</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Permanent+Marker&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="fonts.css">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="editorial.css">
   <link rel="stylesheet" href="worlds.css">
+  <link rel="stylesheet" href="studio-polish.css">
+  <link rel="icon" href="assets/noxwear-mark.svg" type="image/svg+xml">
   <script src="app.js" defer></script>
+  <script src="studio-motion.js" defer></script>
 </head>
 <body data-world="${slug}">
   <div class="announcement" aria-label="رسالة المتجر"><span>NOXwear / PRINT YOUR WORLD</span><svg class="announcement-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2v20M2 12h20M5 5l14 14M19 5 5 19"/></svg><span>${world.name}</span></div>
