@@ -1,4 +1,5 @@
 const UNIT_PRICE = 250;
+const ORDER_DEPOSIT = 50;
 const products = [
   { id:'welcome-keffiyeh', name:'هودي الكوفية الأبيض', category:'welcome', type:'هودي', tag:'NOXWEAR / WELCOME', price:UNIT_PRICE, image:'assets/welcome-keffiyeh-hoodie.jpg', badge:'عرض ترحيبي', welcomeOffer:true, desc:'هودي أبيض بطبعة الكوفية على الظهر. الثمن 250 د.م والتوصيل مجاني ضمن العرض الترحيبي.', sizes:['S','M','L','XL','XXL'], colors:['أبيض'] },
   { id:'welcome-zenin', name:'هودي Zenin الأسود', category:'anime', type:'هودي', tag:'ANIME / WELCOME', price:UNIT_PRICE, image:'assets/welcome-zenin-hoodie.jpg', badge:'عرض ترحيبي', welcomeOffer:true, desc:'هودي أسود برسمة أنمي بالأبيض والأحمر على الظهر. الثمن 250 د.م والتوصيل مجاني ضمن العرض الترحيبي.', sizes:['S','M','L','XL','XXL'], colors:['أسود'] },
@@ -45,7 +46,7 @@ function setTypeFilter(type){
 function openDialog(id){
   const p=products.find(x=>x.id===id);if(!p)return;
   const dialog=$('#product-dialog');
-  $('#dialog-content').innerHTML=`<div class="dialog-grid"><div class="dialog-media"><img src="${p.image}" alt="${esc(p.name)}"><span class="dialog-media-tag">NOXwear / ${esc(p.type)}</span></div><div class="dialog-detail"><div class="dialog-detail-main"><small class="dialog-eyebrow">${esc(p.tag)}</small><h2>${esc(p.name)}</h2><p class="dialog-description">${esc(p.desc)}</p><div class="choice-label">${p.type==='طابلو'?'القياس':'المقاس'}</div><div class="choice-row" data-choice="size">${p.sizes.map((s,i)=>`<button class="choice ${i===0?'selected':''}" type="button" data-value="${esc(s)}">${esc(s)}</button>`).join('')}</div><div class="choice-label">${p.type==='طابلو'?'الإطار':'اللون'}</div><div class="choice-row" data-choice="color">${p.colors.map((c,i)=>`<button class="choice ${i===0?'selected':''}" type="button" data-value="${esc(c)}">${esc(c)}</button>`).join('')}</div><p class="dialog-hint">تأكد من المقاس؛ تبديلو غير متاح. التوفر كنأكّدوه فواتساب.</p></div><div class="dialog-purchase"><div class="dialog-purchase-price"><small>الثمن</small><strong class="dialog-price">${money(p.price)}</strong><span>التوصيل مجاني</span></div><button class="dialog-add" type="button" data-add="${p.id}">زيد للسلة <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h16l-1 12H5L4 8Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg></button></div></div></div>`;
+  $('#dialog-content').innerHTML=`<div class="dialog-grid"><div class="dialog-media"><img src="${p.image}" alt="${esc(p.name)}"><span class="dialog-media-tag">NOXwear / ${esc(p.type)}</span></div><div class="dialog-detail"><div class="dialog-detail-main"><small class="dialog-eyebrow">${esc(p.tag)}</small><h2>${esc(p.name)}</h2><p class="dialog-description">${esc(p.desc)}</p><div class="choice-label">${p.type==='طابلو'?'القياس':'المقاس'}</div><div class="choice-row" data-choice="size">${p.sizes.map((s,i)=>`<button class="choice ${i===0?'selected':''}" type="button" data-value="${esc(s)}">${esc(s)}</button>`).join('')}</div><div class="choice-label">${p.type==='طابلو'?'الإطار':'اللون'}</div><div class="choice-row" data-choice="color">${p.colors.map((c,i)=>`<button class="choice ${i===0?'selected':''}" type="button" data-value="${esc(c)}">${esc(c)}</button>`).join('')}</div><p class="dialog-hint">تبديل المقاس متاح. تأكيد الطلب كيتطلب تسبيق 50 د.م على الطلب كامل.</p></div><div class="dialog-purchase"><div class="dialog-purchase-price"><small>الثمن</small><strong class="dialog-price">${money(p.price)}</strong><span>التوصيل مجاني</span></div><button class="dialog-add" type="button" data-add="${p.id}">زيد للسلة <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h16l-1 12H5L4 8Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg></button></div></div></div>`;
   dialog.showModal();document.body.classList.add('locked');
 }
 function addItem(item){const key=[item.id,item.size,item.color,item.desc||''].join('|');const found=cart.find(x=>x.key===key);if(found)found.qty++;else cart.push({...item,key,qty:1});saveCart();showToast('تزادت القطعة للسلة');}
@@ -53,9 +54,11 @@ function openCart(){renderCart();$('#overlay').hidden=false;requestAnimationFram
 function closeCart(){$('#overlay').classList.remove('visible');$('#cart-drawer').classList.remove('open');$('#cart-drawer').setAttribute('aria-hidden','true');document.body.classList.remove('locked');setTimeout(()=>{$('#overlay').hidden=true},250);}
 function renderCart(){
   const count=cart.reduce((n,x)=>n+x.qty,0),subtotal=cart.reduce((n,x)=>n+x.price*x.qty,0);
+  const deposit=count?Math.min(ORDER_DEPOSIT,subtotal):0;
   $$('.cart-count').forEach(el=>{el.textContent=count;el.hidden=count===0});$('#drawer-count').textContent=`(${count})`;$('#subtotal').textContent=money(subtotal);
+  $('#deposit').textContent=money(deposit);$('#balance').textContent=money(subtotal-deposit);
   $('#cart-items').innerHTML=count?cart.map((x,i)=>`<div class="cart-item"><img src="${esc(x.image||'assets/hero.jpg')}" alt=""><div><h3>${esc(x.name)}</h3><p>${esc([x.size,x.color].filter(Boolean).join(' / '))}</p>${x.desc?`<p>${esc(x.desc).slice(0,150)}</p>`:''}<div class="qty-controls"><button type="button" data-qty="${i}" data-delta="-1" aria-label="نقص الكمية">−</button><span>${x.qty}</span><button type="button" data-qty="${i}" data-delta="1" aria-label="زيد الكمية">+</button></div></div><div><strong>${money(x.price*x.qty)}</strong><button class="remove" type="button" data-remove="${i}">حذف</button></div></div>`).join(''):`<div class="empty-cart"><span>◈</span><strong>السلة باقية خاوية</strong><p>زيد شي قطعة عجبتك وبدا حضّر الطلب ديالك.</p></div>`;
-  $('#shipping-note').textContent='التوصيل مجاني خلال 24–48 ساعة بعد تأكيد الطلب. الأداء عند التسليم.';
+  $('#shipping-note').textContent='التوصيل مجاني خلال 24–48 ساعة بعد تأكيد الطلب. طريقة أداء التسبيق كنأكدوها فواتساب.';
   $('#subtotal-label').textContent='مجموع الطلب';
   $('#whatsapp-order').disabled=!count;
   $('#copy-order').disabled=!count;$('#download-order').disabled=!count;
@@ -63,7 +66,8 @@ function renderCart(){
 function orderText(){
   const lines=['سلام، بغيت نكمل طلب من NOXwear:',''];
   cart.forEach((x,i)=>{lines.push(`${i+1}. ${x.name}`);lines.push(`   المقاس/القياس: ${x.size||'يتحدد لاحقاً'} | اللون/الإطار: ${x.color||'يتحدد لاحقاً'}`);lines.push(`   الكمية: ${x.qty} | الثمن: ${money(x.price*x.qty)}`);if(x.desc)lines.push(`   الفكرة: ${x.desc}`)});
-  lines.push('',`المجموع: ${money(cart.reduce((n,x)=>n+x.price*x.qty,0))}`,'التوصيل: مجاني خلال 24–48 ساعة بعد تأكيد الطلب','الأداء: عند التسليم','تبديل المقاس: غير متاح');
+  const total=cart.reduce((n,x)=>n+x.price*x.qty,0),deposit=cart.length?Math.min(ORDER_DEPOSIT,total):0;
+  lines.push('',`المجموع: ${money(total)}`,`التسبيق لتأكيد الطلب: ${money(deposit)} على الطلب كامل (طريقة الأداء كتتأكد فواتساب)`,`الباقي عند التسليم: ${money(total-deposit)}`,'التوصيل: مجاني خلال 24–48 ساعة بعد تأكيد الطلب','تبديل المقاس: متاح');
   const form=$('#checkout-form');if(form){const name=$('#checkout-name').value.trim(),city=$('#checkout-city').value.trim(),address=$('#checkout-address').value.trim();if(name)lines.push(`الاسم: ${name}`);if(city)lines.push(`المدينة: ${city}`);if(address)lines.push(`العنوان: ${address}`);}
   return lines.join('\n');
 }
@@ -116,3 +120,12 @@ matchMedia('(min-width: 821px)').addEventListener('change',e=>{if(e.matches)clos
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('#cart-drawer').classList.contains('open'))closeCart()});
 const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('in-view');observer.unobserve(entry.target)}}),{threshold:.09});$$('.reveal').forEach(el=>observer.observe(el));
 renderWelcomeOffers();setFilter(document.body.dataset.world || 'all');renderCart();
+const styleMarquee=$('.style-marquee');
+if(styleMarquee){
+  let marqueeVisible=false;
+  const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)');
+  const syncMarquee=()=>styleMarquee.classList.toggle('is-playing',marqueeVisible&&!document.hidden&&!reducedMotion.matches);
+  new IntersectionObserver(entries=>{marqueeVisible=entries[0].isIntersecting;syncMarquee()},{threshold:.05}).observe(styleMarquee);
+  document.addEventListener('visibilitychange',syncMarquee);
+  reducedMotion.addEventListener('change',syncMarquee);
+}

@@ -626,3 +626,27 @@ body.menu-open{overflow:hidden}
   .dialog-add{min-height:46px;font-size:12px}
 }
 @media(prefers-reduced-motion:reduce){.product-open-label,.dialog-add{transition:none}.dialog-add:hover{transform:none}}
+
+/* A narrow product gallery follows the collection cards on every screen. */
+.style-marquee{display:block;overflow:hidden;padding:11px 0;background:#0b0d12;border-block:1px solid #ffffff20;direction:ltr;mask-image:linear-gradient(to right,transparent,#000 3%,#000 97%,transparent)}
+.style-marquee-track{display:flex;gap:8px;width:max-content;animation:styleMarqueeDrift 34s linear infinite;animation-play-state:paused;will-change:transform}
+.style-marquee.is-playing .style-marquee-track{animation-play-state:running}
+.style-marquee:hover .style-marquee-track,.style-marquee:focus-within .style-marquee-track{animation-play-state:paused}
+.style-marquee-track>a,.style-marquee-track>span{display:block;flex:none;width:clamp(180px,17vw,260px);height:clamp(98px,9vw,120px);overflow:hidden;border:1px solid #ffffff35;border-radius:10px;background:#191c25}
+.style-marquee-track>a:focus-visible{outline:3px solid var(--lime);outline-offset:-3px}
+.style-marquee-track img{display:block;width:100%;height:100%;max-width:none;object-fit:cover;object-position:center 42%;filter:saturate(.85)}
+@media(max-width:620px){
+  .style-marquee{display:block;padding:8px 0 9px}
+  .style-marquee-track>a,.style-marquee-track>span{width:128px;height:78px;border-radius:8px}
+}
+@media(prefers-reduced-motion:reduce){
+  .style-marquee{overflow-x:auto;mask-image:none;scroll-snap-type:x proximity;scrollbar-width:none}
+  .style-marquee::-webkit-scrollbar{display:none}
+  .style-marquee-track{animation:none;transform:none;will-change:auto}
+  .style-marquee-track>a{scroll-snap-align:start}
+  .style-marquee-track>span{display:none}
+}
+
+.cart-footer .payment-summary{display:grid;gap:3px;margin:9px 0 3px;padding-top:8px;border-top:1px solid #dcdde2}
+.cart-footer .payment-summary span{display:flex;justify-content:space-between;align-items:center;gap:10px;color:#414653;font-size:11px;font-weight:700}
+.cart-footer .payment-summary strong{color:#171b24;font-size:12px;white-space:nowrap}
