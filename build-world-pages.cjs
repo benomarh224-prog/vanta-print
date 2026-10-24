@@ -26,7 +26,7 @@ home = home.slice(0, mobileNavStart) + `        <nav class="mobile-nav" aria-lab
           <a href="anime.html"><span class="mobile-menu-index">03</span><span class="mobile-menu-link-text"><strong>عالم الأنمي</strong><small>تصاميم مستوحاة من الخيال</small></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
           <a href="football.html"><span class="mobile-menu-index">04</span><span class="mobile-menu-link-text"><strong>عالم الرياضة</strong><small>الشغف اللي كيلبسو</small></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
           <a href="tv.html"><span class="mobile-menu-index">05</span><span class="mobile-menu-link-text"><strong>عالم المسلسلات</strong><small>حكايات فستايل جديد</small></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
-          <a href="motivation.html"><span class="mobile-menu-index">06</span><span class="mobile-menu-link-text"><strong>طاقة التحفيز</strong><small>كل نهار خطوة جديدة</small></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+          <a href="motivation.html"><span class="mobile-menu-index">06</span><span class="mobile-menu-link-text"><strong>عالم التحفيز</strong><small>كل نهار خطوة جديدة</small></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
         </nav>` + home.slice(mobileNavEnd + '        </nav>'.length);
 
 for (const world of ['anime', 'football', 'tv', 'motivation']) {
@@ -54,7 +54,7 @@ const worlds = {
     imageAlt: 'لاعب كرة قدم في ملعب مضيء عند الغروب'
   },
   motivation: {
-    index: '04', english: 'MOTIVATION', name: 'طاقة التحفيز', hero: 'world-motivation-color.png',
+    index: '04', english: 'MOTIVATION', name: 'عالم التحفيز', hero: 'world-motivation-color.png',
     description: 'رسائل صغيرة وتفاصيل قوية كتفكرك كل نهار تزيد خطوة لقدّام.',
     headline: 'زيد خطوة لقدّام.', lead: 'كل قمة كتبدأ من قرار. لبس الفكرة أو خليها قدّام عينيك فبلاصتك، وخليها تذكرك باللي جاي.',
     productIntro: 'تصاميم للبس وللحائط كتخلي الطاقة الإيجابية حاضرة.',
