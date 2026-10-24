@@ -20,6 +20,14 @@ const esc = s => String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 const money = n => `${Number(n).toLocaleString('fr-MA')} د.م`;
 let cart = [];
 try { const saved=JSON.parse(localStorage.getItem('noxwear-cart') ?? localStorage.getItem('vanta-cart') ?? '[]'); if(Array.isArray(saved)) cart=saved.filter(x=>x&&typeof x.name==='string'&&Number.isFinite(x.price)&&x.qty>0).slice(0,100).map(x=>({...x,price:UNIT_PRICE})); } catch {}
+function cartPricing(items=cart){
+  const itemsTotal=items.reduce((sum,item)=>sum+item.price*item.qty,0);
+  const hoodieCount=items.reduce((sum,item)=>sum+(products.find(product=>product.id===item.id)?.type==='هودي'||item.name.includes('هودي')?item.qty:0),0);
+  const discount=Math.floor(hoodieCount/2)*50;
+  const total=itemsTotal-discount;
+  const deposit=total?Math.min(ORDER_DEPOSIT,total):0;
+  return {itemsTotal,discount,total,deposit,balance:total-deposit};
+}
 let activeFilter='all';
 let toastTimer;
 
@@ -53,20 +61,22 @@ function addItem(item){const key=[item.id,item.size,item.color,item.desc||''].jo
 function openCart(){renderCart();$('#overlay').hidden=false;requestAnimationFrame(()=>$('#overlay').classList.add('visible'));$('#cart-drawer').classList.add('open');$('#cart-drawer').setAttribute('aria-hidden','false');document.body.classList.add('locked');}
 function closeCart(){$('#overlay').classList.remove('visible');$('#cart-drawer').classList.remove('open');$('#cart-drawer').setAttribute('aria-hidden','true');document.body.classList.remove('locked');setTimeout(()=>{$('#overlay').hidden=true},250);}
 function renderCart(){
-  const count=cart.reduce((n,x)=>n+x.qty,0),subtotal=cart.reduce((n,x)=>n+x.price*x.qty,0);
-  const deposit=count?Math.min(ORDER_DEPOSIT,subtotal):0;
-  $$('.cart-count').forEach(el=>{el.textContent=count;el.hidden=count===0});$('#drawer-count').textContent=`(${count})`;$('#subtotal').textContent=money(subtotal);
-  $('#deposit').textContent=money(deposit);$('#balance').textContent=money(subtotal-deposit);
+  const count=cart.reduce((n,x)=>n+x.qty,0),pricing=cartPricing();
+  $$('.cart-count').forEach(el=>{el.textContent=count;el.hidden=count===0});$('#drawer-count').textContent=`(${count})`;$('#subtotal').textContent=money(pricing.total);
+  $('#items-total').textContent=money(pricing.itemsTotal);$('#hoodie-discount-row').hidden=!pricing.discount;$('#hoodie-discount').textContent=`−${money(pricing.discount)}`;
+  $('#deposit').textContent=money(pricing.deposit);$('#balance').textContent=money(pricing.balance);
   $('#cart-items').innerHTML=count?cart.map((x,i)=>`<div class="cart-item"><img src="${esc(x.image||'assets/hero.jpg')}" alt=""><div><h3>${esc(x.name)}</h3><p>${esc([x.size,x.color].filter(Boolean).join(' / '))}</p>${x.desc?`<p>${esc(x.desc).slice(0,150)}</p>`:''}<div class="qty-controls"><button type="button" data-qty="${i}" data-delta="-1" aria-label="نقص الكمية">−</button><span>${x.qty}</span><button type="button" data-qty="${i}" data-delta="1" aria-label="زيد الكمية">+</button></div></div><div><strong>${money(x.price*x.qty)}</strong><button class="remove" type="button" data-remove="${i}">حذف</button></div></div>`).join(''):`<div class="empty-cart"><span>◈</span><strong>السلة باقية خاوية</strong><p>زيد شي قطعة عجبتك وبدا حضّر الطلب ديالك.</p></div>`;
-  $('#shipping-note').textContent='التوصيل مجاني خلال 24–48 ساعة بعد تأكيد الطلب. طريقة أداء التسبيق كنأكدوها فواتساب.';
+  $('#shipping-note').textContent='التوصيل مجاني لجميع المدن خلال 24–48 ساعة بعد تأكيد الطلب. طريقة أداء التسبيق كنأكدوها فواتساب.';
   $('#subtotal-label').textContent='مجموع الطلب';
   $('#whatsapp-order').disabled=!count;
 }
 function orderText(){
   const lines=['سلام، بغيت نكمل طلب من NOXwear:',''];
   cart.forEach((x,i)=>{lines.push(`${i+1}. ${x.name}`);lines.push(`   المقاس/القياس: ${x.size||'يتحدد لاحقاً'} | اللون/الإطار: ${x.color||'يتحدد لاحقاً'}`);lines.push(`   الكمية: ${x.qty} | الثمن: ${money(x.price*x.qty)}`);if(x.desc)lines.push(`   الفكرة: ${x.desc}`)});
-  const total=cart.reduce((n,x)=>n+x.price*x.qty,0),deposit=cart.length?Math.min(ORDER_DEPOSIT,total):0;
-  lines.push('',`المجموع: ${money(total)}`,`التسبيق لتأكيد الطلب: ${money(deposit)} على الطلب كامل (طريقة الأداء كتتأكد فواتساب)`,`الباقي عند التسليم: ${money(total-deposit)}`,'التوصيل: مجاني خلال 24–48 ساعة بعد تأكيد الطلب','تبديل المقاس: متاح');
+  const pricing=cartPricing();
+  lines.push('',`ثمن القطع: ${money(pricing.itemsTotal)}`);
+  if(pricing.discount)lines.push(`خصم جوج هوديات: −${money(pricing.discount)}`);
+  lines.push(`المجموع: ${money(pricing.total)}`,`التسبيق لتأكيد الطلب: ${money(pricing.deposit)} على الطلب كامل (طريقة الأداء كتتأكد فواتساب)`,`الباقي عند التسليم: ${money(pricing.balance)}`,'التوصيل: مجاني لجميع المدن خلال 24–48 ساعة بعد تأكيد الطلب','تبديل المقاس: متاح');
   const form=$('#checkout-form');if(form){const name=$('#checkout-name').value.trim(),city=$('#checkout-city').value.trim(),address=$('#checkout-address').value.trim();if(name)lines.push(`الاسم: ${name}`);if(city)lines.push(`المدينة: ${city}`);if(address)lines.push(`العنوان: ${address}`);}
   return lines.join('\n');
 }

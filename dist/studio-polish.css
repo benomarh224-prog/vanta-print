@@ -51,6 +51,9 @@ body:not([data-world]) .announcement{background:#101218;height:30px;font-size:9p
 body:not([data-world]) .announcement-star{color:var(--lime)}
 #collections{padding:64px 0;background:var(--studio-paper);color:#131820}
 #collections>.container{width:min(1380px,calc(100% - 64px))}
+.collection-benefits{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:0 0 28px}
+.collection-benefits p{display:flex;align-items:center;justify-content:center;gap:9px;min-height:48px;margin:0;padding:10px 14px;border:1px solid #dce0e8;border-radius:10px;background:#fff;color:#202736;text-align:center;font-size:12px;font-weight:800;line-height:1.5}
+.collection-benefits .benefit-mark{display:grid;place-items:center;flex:none;width:22px;height:22px;border-radius:50%;background:#e5fa36;color:#111820;font:900 15px/1 Cairo,sans-serif}
 #collections .section-head{margin:0 0 30px;align-items:center;gap:28px}
 #collections .kicker{color:#3155d7;font-size:10px;letter-spacing:.08em}
 #collections .section-head h2{font-size:clamp(30px,3.4vw,48px);color:#141a25;letter-spacing:-.045em}
@@ -131,6 +134,9 @@ body:not([data-world]) .announcement-star{color:var(--lime)}
   .campaign-navigation>button{display:none}
   #collections{padding:26px 0 32px}
   #collections>.container{width:calc(100% - 28px)}
+  .collection-benefits{display:grid;grid-template-columns:1fr;gap:5px;margin-bottom:21px}
+  .collection-benefits p{justify-content:flex-start;min-height:30px;padding:5px 11px;border:0;border-inline-start:3px solid #3265ff;border-radius:5px;background:#eceff4;text-align:start;font-size:11px}
+  .collection-benefits .benefit-mark{width:18px;height:18px;font-size:12px}
   #collections .section-head{margin-bottom:21px;text-align:center}
   #collections .mobile-collections-title{font-size:25px;line-height:1.6;color:#141a25}
   #collections .collection-grid{gap:10px}
