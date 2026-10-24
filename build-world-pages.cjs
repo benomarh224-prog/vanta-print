@@ -21,10 +21,10 @@ const mobileNavStart = home.indexOf('        <nav class="mobile-nav"');
 const mobileNavEnd = home.indexOf('        </nav>', mobileNavStart);
 if (mobileNavStart < 0 || mobileNavEnd < 0) throw new Error('Mobile navigation not found');
 home = home.slice(0, mobileNavStart) + `        <nav class="mobile-nav" aria-label="تصفح الموقع">
-          <a href="index.html#collections"><span class="mobile-menu-index">01</span><span class="mobile-menu-link-text"><strong>العوالم</strong><small>أنمي، كرة، مسلسلات وتحفيز</small></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+          <a href="index.html#collections"><span class="mobile-menu-index">01</span><span class="mobile-menu-link-text"><strong>العوالم</strong><small>أنمي، رياضة، مسلسلات وتحفيز</small></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
           <a href="index.html#offers"><span class="mobile-menu-index">02</span><span class="mobile-menu-link-text"><strong>عروض ترحيبية</strong><small>كل قطعة 250 د.م · التوصيل مجاني</small></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
           <a href="anime.html"><span class="mobile-menu-index">03</span><span class="mobile-menu-link-text"><strong>عالم الأنمي</strong><small>تصاميم مستوحاة من الخيال</small></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
-          <a href="football.html"><span class="mobile-menu-index">04</span><span class="mobile-menu-link-text"><strong>عالم الكرة</strong><small>الشغف اللي كيلبسو</small></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+          <a href="football.html"><span class="mobile-menu-index">04</span><span class="mobile-menu-link-text"><strong>عالم الرياضة</strong><small>الشغف اللي كيلبسو</small></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
           <a href="tv.html"><span class="mobile-menu-index">05</span><span class="mobile-menu-link-text"><strong>عالم المسلسلات</strong><small>حكايات فستايل جديد</small></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
           <a href="motivation.html"><span class="mobile-menu-index">06</span><span class="mobile-menu-link-text"><strong>طاقة التحفيز</strong><small>كل نهار خطوة جديدة</small></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
         </nav>` + home.slice(mobileNavEnd + '        </nav>'.length);
@@ -33,7 +33,7 @@ for (const world of ['anime', 'football', 'tv', 'motivation']) {
   home = home.replaceAll(`href="#products" data-filter-link="${world}"`, `href="${world}.html"`);
 }
 home = home.replace('<a href="#products">المنتجات</a>', '<a href="#collections">العوالم</a>');
-home = home.replace('<a href="#products">المنتجات</a>', '<a href="anime.html">أنمي</a><a href="football.html">كرة</a><a href="motivation.html">تحفيز</a>');
+home = home.replace('<a href="#products">المنتجات</a>', '<a href="anime.html">أنمي</a><a href="football.html">رياضة</a><a href="motivation.html">تحفيز</a>');
 home = home.replaceAll('كتشف الكولكشن', 'اختار العالم ديالك');
 if (home.includes('href="#products"') || home.includes('data-filter-link=')) throw new Error('Old product filter links remain on home');
 fs.writeFileSync(homeFile, home);
@@ -47,7 +47,7 @@ const worlds = {
     imageAlt: 'شخصية محارب خيالية بألوان الأزرق والأحمر وسط أزهار الكرز'
   },
   football: {
-    index: '02', english: 'FOOTBALL', name: 'عالم الكرة', hero: 'world-football-color.png',
+    index: '02', english: 'SPORT', name: 'عالم الرياضة', hero: 'world-football-color.png',
     description: 'شغف الملعب كيمشي معاك من المدرجات للشارع، على هوديات وطابلوات بطابع قوي.',
     headline: 'الشغف كيبان.', lead: 'الأضواء، اللحظة الحاسمة، والإحساس ديال الماتش. اختار قطعة كتفكرك علاش الكرة أكثر من لعبة.',
     productIntro: 'من الهودي المريح للطابلو اللي كيزيد حماس للحائط ديالك.',
